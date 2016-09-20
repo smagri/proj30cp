@@ -1,13 +1,16 @@
 # proj30cp
 
-# This is the bulk of my masters 30cp project code, 2016, namely this
-#is for the backend control system of my project.
-#
-#My  other  code  for  this   year  is  in  my  catkin.voice_node  and
-#rosVoiceNode(indigo)  repositories.   They  deal with  chainging  the
-#voice on a ros catkin and ros indigo system respectively.
+This is the bulk of my masters 30cp project code, 2016, namely this is
+for the backend control system of my project.
 
-#one line summary: arduino motor(servo &amp; stepper) wifi server(arduinoServer.ino); motor control client(motorControlClient.cpp &amp; xfer2as.cpp); current state of gui code(includes sendSMS.cpp) 
+My  other  code   for  this  year  is  in   my  catkin.voice_node  and
+rosVoiceNode(indigo) repositories.  They deal with chainging the voice
+on a ros catkin and ros indigo system respectively.
+
+#Summary: arduino motor(servo &amp; stepper) wifi
+server(arduinoServer.ino);
+motor control client(motorControlClient.cpp &amp; xfer2as.cpp);
+current state of gui code(includes sendSMS.cpp) 
 
 Arduino motor, servo & stepper, WiFi server is arduinoServer.ino.  You
 can  choose  to  build  servo  or  a stepper  motor  server  with  the
