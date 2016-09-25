@@ -22,7 +22,7 @@
      <height>521</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="ambulanceGridLayout"/>
+   <layout class="QGridLayout" name="gridLayout"/>
   </widget>
   <widget class="QGroupBox" name="payloadDeliveryGroupBox">
    <property name="geometry">
@@ -134,7 +134,7 @@ QGroupBox::title {
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="servoDelaySec">
+        <widget class="QLineEdit" name="lineEdit_2">
          <property name="minimumSize">
           <size>
            <width>200</width>
@@ -156,6 +156,32 @@ QGroupBox::title {
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>10</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Winch Down</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_2">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>40</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Winch Up</string>
+      </property>
      </widget>
      <widget class="QWidget" name="horizontalLayoutWidget_5">
       <property name="geometry">
@@ -193,7 +219,7 @@ QGroupBox::title {
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="stepperNumRotations">
+        <widget class="QLineEdit" name="lineEdit">
          <property name="minimumSize">
           <size>
            <width>200</width>
@@ -209,17 +235,14 @@ QGroupBox::title {
          <property name="inputMethodHints">
           <set>Qt::ImhDigitsOnly</set>
          </property>
-         <property name="text">
-          <string/>
-         </property>
          <property name="maxLength">
-          <number>32767</number>
+          <number>4</number>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="microAdjPushButton">
+     <widget class="QPushButton" name="pushButton_3">
       <property name="geometry">
        <rect>
         <x>500</x>
@@ -232,32 +255,12 @@ QGroupBox::title {
        <string>microAdjustment</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="winchUpRadioButton">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>40</y>
-        <width>117</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Winch Up</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="winchDownRadioButton">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>10</y>
-        <width>117</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Winch Down</string>
-      </property>
-     </widget>
+     <zorder>horizontalLayoutWidget_4</zorder>
+     <zorder>checkBox</zorder>
+     <zorder>checkBox_2</zorder>
+     <zorder>messageText_3</zorder>
+     <zorder>horizontalLayoutWidget_5</zorder>
+     <zorder>pushButton_3</zorder>
     </widget>
     <widget class="QGroupBox" name="groupBox_2">
      <property name="geometry">
@@ -271,7 +274,7 @@ QGroupBox::title {
      <property name="title">
       <string>Automated Control</string>
      </property>
-     <widget class="QPushButton" name="deliverPayloadPushButton">
+     <widget class="QPushButton" name="deliverPayload">
       <property name="geometry">
        <rect>
         <x>70</x>
@@ -315,7 +318,7 @@ QPushButton:default {
      </widget>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="sendSMSGroupBox">
+   <widget class="QGroupBox" name="SendSMSGroupBox">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -437,7 +440,7 @@ QGroupBox::title {
        </widget>
       </item>
       <item>
-       <widget class="QTextEdit" name="messageTextTextEdit">
+       <widget class="QTextEdit" name="messageText">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -457,13 +460,13 @@ QGroupBox::title {
       </item>
      </layout>
     </widget>
-    <widget class="QPushButton" name="sendSMSPushButton">
+    <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
        <x>310</x>
-       <y>166</y>
+       <y>176</y>
        <width>99</width>
-       <height>41</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="text">
@@ -484,7 +487,7 @@ QGroupBox::title {
        <number>6</number>
       </property>
       <item>
-       <widget class="QComboBox" name="modemDevNameComboBox">
+       <widget class="QComboBox" name="comboBox">
         <property name="currentIndex">
          <number>0</number>
         </property>
@@ -506,7 +509,7 @@ QGroupBox::title {
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="mobileNumLineEdit">
+       <widget class="QLineEdit" name="lineEdit_3">
         <property name="minimumSize">
          <size>
           <width>340</width>
@@ -532,6 +535,13 @@ QGroupBox::title {
       </item>
      </layout>
     </widget>
+    <zorder>horizontalLayoutWidget</zorder>
+    <zorder>horizontalLayoutWidget_2</zorder>
+    <zorder>label_2</zorder>
+    <zorder>pushButton</zorder>
+    <zorder>pushButton</zorder>
+    <zorder>horizontalLayoutWidget_3</zorder>
+    <zorder>horizontalLayoutWidget_3</zorder>
    </widget>
   </widget>
  </widget>

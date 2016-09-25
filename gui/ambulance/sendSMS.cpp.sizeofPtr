@@ -154,9 +154,12 @@ int sendSMS(char *modemDevName, char *phoneNum,
 
 
   // Write text of SMS.
-  fprintf(stderr,"dbg: sendSMS: msgTxtLength %d\n", msgTxtLength);
+  fprintf(stderr, "dbg: sendSMS: msgTxt=%s\n", msgTxt);
+  fprintf(stderr, "Number of chars in message=%ld\n", sizeof(msgTxt));
+  fprintf(stderr, "dbg: sendSMS: length of msgTxt=%ld\n", sizeof(*msgTxt));
+  fprintf(stderr,"msgTxtLength %d\n", msgTxtLength);
 
-  if (  ( retval = write(ttyFD, msgTxt, msgTxtLength) ) == -1  ){
+  if (  ( retval = write(ttyFD, msgTxt, (23)) ) == -1  ){
     perror("sendSMS");
     fprintf(stderr, "sendSMS: write msgTxt returned error.\n");
     return 1;

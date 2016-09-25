@@ -19,7 +19,7 @@ ambulance::ambulance(QWidget *parent) :
   
   fprintf(stderr, "Hello Ambulance World!\n");
 
-  // Initialises SMS variables.
+  // initialises SMS variables
   strcpy(modemDevName, "/dev/ttyUSB0"); // default modem device
   strcpy(phoneNum, "+61401858908"); // default SMS phone number(smagri)
   strcpy(msgTxt, "Payload has arrived.\r\n");//default payload arrival msg
@@ -28,9 +28,8 @@ ambulance::ambulance(QWidget *parent) :
   fprintf(stderr, "Default device to be opened is %s\n", modemDevName);
   fprintf(stderr, "Default phone number for SMS=%s\n", phoneNum);
   fprintf(stderr, "Default payload delivered message sent is=%s\n", msgTxt);
-
   fprintf(stderr, "Number of chars in message=%ld\n", sizeof(msgTxt));
-  //
+
   for (int i=0; i<(MAX_msgTxt_CHARS+1); i++){
     if (msgTxt[i] == '.'){
       fprintf(stderr, "full stop is at index %d\n", (i+1));
@@ -47,16 +46,7 @@ ambulance::ambulance(QWidget *parent) :
       break;
     }
   }
-
-  // Other initialisations.
-  dirRotation='1'; // clockwise rotation, winch down
-  ui->winchDownRadioButton->setChecked(1);
- 
-  numRotation=3; // default number of rotations is 3
-  ui->stepperNumRotations->setText("3");
-
-  ui->messageTextTextEdit->setText("Payload has arrived.\r\n");
-
+  
 }
 
 
@@ -117,10 +107,9 @@ void ambulance::on_stepperNumRotations_editingFinished(){
   // the box via the mouse or keyboard commands(eg tab).
   //
   fprintf(stderr, "stepperNumRotations_editingFinished\n");
-  //char nrc[4];
+  char nrc[4];
 
-  numRotation = ui->stepperNumRotations->text().toInt();
-
+  int numRotation = ui->stepperNumRotations->text().toInt();
 
   // if (numRotationInt > 127){
   //   // Improvements need to be made to the arduino server, if possible.
@@ -129,18 +118,15 @@ void ambulance::on_stepperNumRotations_editingFinished(){
   //   return;
   // }
 
-  fprintf(stderr, "  unsigned int numRotation=%u\n", numRotation);
-  
-  // Only  works for numbers  that represent  characters in  the ascii
-  // character set, otherwise you just get funny chars on the screen.
+  fprintf(stderr, "  int numRotation=%d\n", numRotation);
   fprintf(stderr, "  char numRotation=%c\n", numRotation);
 
-  // sprintf(nrc, "%d", numRotation);
-  // fprintf(stderr, "  string nrc=%s\n", nrc);
-  // fprintf(stderr, "  char nrc[0]=%c\n", nrc[0]);
-  // fprintf(stderr, "  char nrc[1]=%c\n", nrc[1]);
-  // fprintf(stderr, "  char nrc[2]=%c\n", nrc[2]);
-  // fprintf(stderr, "  char nrc[3]=%c\n", nrc[3]);
+  sprintf(nrc, "%d", numRotation);
+  fprintf(stderr, "  string nrc=%s\n", nrc);
+  fprintf(stderr, "  char nrc[0]=%c\n", nrc[0]);
+  fprintf(stderr, "  char nrc[1]=%c\n", nrc[1]);
+  fprintf(stderr, "  char nrc[2]=%c\n", nrc[2]);
+  fprintf(stderr, "  char nrc[3]=%c\n", nrc[3]);
   //fprintf(stderr, "  ascii string of characters=%s\n", nrc);
 
 }
@@ -148,43 +134,30 @@ void ambulance::on_stepperNumRotations_editingFinished(){
 
 void ambulance::on_microAdjPushButton_clicked(){
 
-  int retval; // return value from xferas() fn
+  //int retval; // return value from xferas() fn
 
   fprintf(stderr, "microAdjPushButton_clicked\n");
+
+
+  // dirRotation = '1'; // for debugging
+  // //strcpy(serverID, "192.168.43.200"); // servo motor
+  // strcpy(serverID, "192.168.43.201"); // stepper motor
+
+  // fprintf(stderr, "  int numRotation=%i\n", numRotation);
+  // fprintf(stderr, "  char numRotation=%c\n", numRotation);
+  // fprintf(stderr, "dirRotation=%c\n", dirRotation);
+  // fprintf(stderr, "serverID=%s\n", serverID);
   
-  //strcpy(serverID, "192.168.43.200"); // servo motor
-  strcpy(serverID, "192.168.43.201"); // stepper motor
-  
-  fprintf(stderr, "  unsigned int numRotation=%u\n", numRotation);
-  fprintf(stderr, "  char numRotation=%c\n", numRotation);
-  fprintf(stderr, "  dirRotation=%c\n", dirRotation);
-  fprintf(stderr, "  serverID=%s\n", serverID);
-  
-  retval = xfer2as(dirRotation, numRotation, serverID);
-  if (retval){
-    fprintf(stderr, "Error returned from xfer2as()\n");
-  }
-  sleep(2); // stepper needs shorter wait
-  // sleep(6); // servo needs longer wait
-  
-  // fprintf(stderr, "Reverse Motor Direction, dirRotation=%c\n", dirRotation);
-  // dirRotation = '0';
   // retval = xfer2as(dirRotation, numRotation, serverID);
-  // sleep(12);
+  // //sleep(12); // wait for servo to stop before given next command, min=11sec
   // sleep(6);
-  
-  // wrks for servo motor:
-  //
-  // retval = xfer2as(dirRotation, numRotation, serverID);
-  // //sleep(12);// wait for servo to stop before given next command, min=11sec
-  // sleep(6);
-  //
+
   // fprintf(stderr, "Reverse Motor Direction, dirRotation=%c\n", dirRotation);
   // dirRotation = '0';
   // retval = xfer2as(dirRotation, numRotation, serverID);
   // //sleep(12);
   // sleep(6);
-   
+
   //fprintf(stderr, "microAdjPushButton_clicked: xfer2as retval=%d\n", retval);
 }
 
@@ -193,7 +166,7 @@ void ambulance::on_winchDownRadioButton_clicked(){
 
     if (ui->winchDownRadioButton->isChecked()){
         dirRotation = '1';
-        fprintf(stderr, "winchDownRadioButton: dirRotation=%c\n", dirRotation);
+	fprintf(stderr, "dirRotation=%c\n", dirRotation);
     }
 }
 
@@ -202,7 +175,7 @@ void ambulance::on_winchUpRadioButton_clicked(){
 
   if (ui->winchUpRadioButton->isChecked()){
     dirRotation = '0';
-    fprintf(stderr, "winchUpRadioButton: dirRotation=%c\n", dirRotation);
+    fprintf(stderr, "dirRotation=%c\n", dirRotation);
   }
 
 }

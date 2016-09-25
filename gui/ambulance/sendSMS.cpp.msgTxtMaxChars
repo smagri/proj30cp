@@ -33,7 +33,7 @@
 
 
 int sendSMS(char *modemDevName, char *phoneNum,
-	    char *msgTxt, int msgTxtLength){
+	    char *msgTxt, int msgTxtMaxChars){
 
 
   int ttyFD; // Serial port file descriptor, or unix file handle.
@@ -154,9 +154,7 @@ int sendSMS(char *modemDevName, char *phoneNum,
 
 
   // Write text of SMS.
-  fprintf(stderr,"dbg: sendSMS: msgTxtLength %d\n", msgTxtLength);
-
-  if (  ( retval = write(ttyFD, msgTxt, msgTxtLength) ) == -1  ){
+  if (  ( retval = write(ttyFD, msgTxt, (sizeof(msgTxt)-1)) ) == -1  ){
     perror("sendSMS");
     fprintf(stderr, "sendSMS: write msgTxt returned error.\n");
     return 1;

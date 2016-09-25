@@ -22,7 +22,7 @@ static const uint qt_meta_data_ambulance[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -35,10 +35,6 @@ static const uint qt_meta_data_ambulance[] = {
       85,   80,   10,   10, 0x08,
      128,   10,   10,   10, 0x08,
      169,   10,   10,   10, 0x08,
-     201,   10,   10,   10, 0x08,
-     235,   10,   10,   10, 0x08,
-     267,   10,   10,   10, 0x08,
-     306,   10,   10,   10, 0x08,
 
        0        // eod
 };
@@ -49,10 +45,6 @@ static const char qt_meta_stringdata_ambulance[] = {
     "on_modemDevNameComboBox_activated(QString)\0"
     "on_stepperNumRotations_editingFinished()\0"
     "on_microAdjPushButton_clicked()\0"
-    "on_winchDownRadioButton_clicked()\0"
-    "on_winchUpRadioButton_clicked()\0"
-    "on_mobileNumLineEdit_editingFinished()\0"
-    "on_messageTextTextEdit_textChanged()\0"
 };
 
 void ambulance::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -66,10 +58,6 @@ void ambulance::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 2: _t->on_modemDevNameComboBox_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 3: _t->on_stepperNumRotations_editingFinished(); break;
         case 4: _t->on_microAdjPushButton_clicked(); break;
-        case 5: _t->on_winchDownRadioButton_clicked(); break;
-        case 6: _t->on_winchUpRadioButton_clicked(); break;
-        case 7: _t->on_mobileNumLineEdit_editingFinished(); break;
-        case 8: _t->on_messageTextTextEdit_textChanged(); break;
         default: ;
         }
     }
@@ -107,9 +95,9 @@ int ambulance::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 5;
     }
     return _id;
 }

@@ -157,6 +157,32 @@ QGroupBox::title {
        </item>
       </layout>
      </widget>
+     <widget class="QCheckBox" name="winchDownCheckBox">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>10</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Winch Down</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="winchUpCheckBox">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>40</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Winch Up</string>
+      </property>
+     </widget>
      <widget class="QWidget" name="horizontalLayoutWidget_5">
       <property name="geometry">
        <rect>
@@ -209,11 +235,8 @@ QGroupBox::title {
          <property name="inputMethodHints">
           <set>Qt::ImhDigitsOnly</set>
          </property>
-         <property name="text">
-          <string/>
-         </property>
          <property name="maxLength">
-          <number>32767</number>
+          <number>4</number>
          </property>
         </widget>
        </item>
@@ -232,32 +255,11 @@ QGroupBox::title {
        <string>microAdjustment</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="winchUpRadioButton">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>40</y>
-        <width>117</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Winch Up</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="winchDownRadioButton">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>10</y>
-        <width>117</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Winch Down</string>
-      </property>
-     </widget>
+     <zorder>horizontalLayoutWidget_4</zorder>
+     <zorder>winchDownCheckBox</zorder>
+     <zorder>winchUpCheckBox</zorder>
+     <zorder>horizontalLayoutWidget_5</zorder>
+     <zorder>microAdjPushButton</zorder>
     </widget>
     <widget class="QGroupBox" name="groupBox_2">
      <property name="geometry">
@@ -532,6 +534,12 @@ QGroupBox::title {
       </item>
      </layout>
     </widget>
+    <zorder>horizontalLayoutWidget</zorder>
+    <zorder>horizontalLayoutWidget_2</zorder>
+    <zorder>label_2</zorder>
+    <zorder>sendSMSPushButton</zorder>
+    <zorder>horizontalLayoutWidget_3</zorder>
+    <zorder>horizontalLayoutWidget_3</zorder>
    </widget>
   </widget>
  </widget>

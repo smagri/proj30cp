@@ -15,7 +15,7 @@
 
 extern int sendSMS(char *modemDevName, char *phoneNum,
 		   char *msgTxt, int msgTxtLength);
-extern int xfer2as(char dirRotation, unsigned int numRotation, char *serverID);
+extern int xfer2as(char dirRotation, char numRotation, char *serverID);
 
 
 using namespace std;
@@ -65,10 +65,10 @@ private:
   int msgTxtLength;  // location of terminating NULL in msgTxt
 
   char serverID[15]; // arduinoServer IPaddress or Hostname
-  unsigned char dirRotation; // motor rotation, clockwise='1' &
+  char dirRotation; // motor rotation, clockwise='1' &
 			     // counterclockwise='0'
-  unsigned int numRotation; // number of motor rotations; not
-			    // applicable to stepper motor
+  char numRotation; // number of motor rotations; not
+		    // applicable to stepper motor
 };
 
 #endif // AMBULANCE_H

@@ -4,7 +4,7 @@
 // INPUTS: -------------------------------------------------------------------
 
 // modemDevName	- modem device/file descriptor name, usually /dev/ttyUSB0
-// msgTxt 	- message text for the SMS
+// messageTxt 	- message text for the SMS
 // phoneNum	- phone number for the SMS
 
 // ---------------------------------------------------------------------------
@@ -31,9 +31,7 @@
 #include <errno.h>
  
 
-
-int sendSMS(char *modemDevName, char *phoneNum,
-	    char *msgTxt, int msgTxtLength){
+int sendSMS(char *modemDevName, char *phoneNum){
 
 
   int ttyFD; // Serial port file descriptor, or unix file handle.
@@ -43,7 +41,7 @@ int sendSMS(char *modemDevName, char *phoneNum,
   unsigned char setTxtMode[] = "AT+CMGF=1\r\n";
   //unsigned char phoneNum[] = "AT+CMGS=\"+61401858908\"\r\n";
   char phoneNumSMScmd[] = "AT+CMGS=\x22+61401858908\x22\r\n";
-  //unsigned char msgTxt[] = "Payload has arrived.\r\n";
+  unsigned char txt2write[] = "Payload has arrived.\r\n";
   unsigned char endMsg[] = "\x1A"; // == Control Z
   unsigned char charRead[8]; // character read from the serial port/ttyFD
 
@@ -55,11 +53,6 @@ int sendSMS(char *modemDevName, char *phoneNum,
      
   // Open the terminal/serial port stream: as read, write and blocking.
   ttyFD = open(modemDevName, O_RDWR);      
-  if (ttyFD == -1){
-    perror("sendSMS");
-    fprintf(stderr, "sendSMS: error while opening modem device.\n");
-    return 1;
-  }
 
   // Open the terminal/serial port stream: as read, write and non-blocking.
   //  ttyFD = open(argv[1], O_RDWR | O_NONBLOCK);
@@ -69,6 +62,12 @@ int sendSMS(char *modemDevName, char *phoneNum,
 
   // Can make non-blocking with use of select() call here.
 
+
+  // Construct phone number SMS command eg: "AT+CMGS=\"+61401858908\"\r\n"
+  strcpy(phoneNumSMScmd, "AT+CMGS=\"");
+  strcat(phoneNumSMScmd, phoneNum);
+  strcat(phoneNumSMScmd, "\"\r\n");
+  fprintf(stderr, "dbg: sendSMS: New phoneNumSMScmd=%s\n", phoneNumSMScmd);
 
   // NOTE: The  best way to see  what is being sent  and recieved from
   // the serial  port is the 'strace' program;  use 'cat /dev/ttyUSB0'
@@ -127,13 +126,6 @@ int sendSMS(char *modemDevName, char *phoneNum,
   sleep(1);
 
   // Send phone number where SMS will be sent too.
-  //
-  // Construct phone number SMS command eg: "AT+CMGS=\"+61401858908\"\r\n"
-  strcpy(phoneNumSMScmd, "AT+CMGS=\"");
-  strcat(phoneNumSMScmd, phoneNum);
-  strcat(phoneNumSMScmd, "\"\r\n");
-  fprintf(stderr, "dbg: sendSMS: New phoneNumSMScmd=%s\n", phoneNumSMScmd);
-
   if (  ( retval = write(ttyFD, phoneNumSMScmd,
 			 (sizeof(phoneNumSMScmd)-1)) ) == -1  ){
     perror("sendSMS");
@@ -154,11 +146,9 @@ int sendSMS(char *modemDevName, char *phoneNum,
 
 
   // Write text of SMS.
-  fprintf(stderr,"dbg: sendSMS: msgTxtLength %d\n", msgTxtLength);
-
-  if (  ( retval = write(ttyFD, msgTxt, msgTxtLength) ) == -1  ){
+  if (  ( retval = write(ttyFD, txt2write, (sizeof(txt2write)-1)) ) == -1  ){
     perror("sendSMS");
-    fprintf(stderr, "sendSMS: write msgTxt returned error.\n");
+    fprintf(stderr, "sendSMS: write txt2write returned error.\n");
     return 1;
   }
   //sleep(1);
@@ -173,9 +163,7 @@ int sendSMS(char *modemDevName, char *phoneNum,
   //sleep(20);
 
   close(ttyFD);
-
-  fprintf(stderr,"sendSMS: All commands for SMS have been sent to 3G modem.\n");
-
-
+  
   return 0; // success
+  
 }

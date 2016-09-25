@@ -10,12 +10,10 @@
 
 #define MAX_modemDevName_CHARS 12
 #define MAX_phoneNum_CHARS 12
-#define MAX_msgTxt_CHARS 160
 
 
-extern int sendSMS(char *modemDevName, char *phoneNum,
-		   char *msgTxt, int msgTxtLength);
-extern int xfer2as(char dirRotation, unsigned int numRotation, char *serverID);
+extern int sendSMS(char *modemDevName, char *phoneNum);
+extern int xfer2as(char dirRotation, char numRotation, char *serverID);
 
 
 using namespace std;
@@ -36,11 +34,9 @@ public:
 
 private slots:
   void on_deliverPayloadPushButton_clicked();
-
   void on_sendSMSPushButton_clicked();
-
   void on_modemDevNameComboBox_activated(const QString &arg1);
-
+  //void on_stepperNumRotations_cursorPositionChanged(int arg1, int arg2);
   void on_stepperNumRotations_editingFinished();
 
   void on_microAdjPushButton_clicked();
@@ -61,14 +57,11 @@ private:
 
   char phoneNum[MAX_phoneNum_CHARS+1];// phone number for SMS
 
-  char msgTxt[MAX_msgTxt_CHARS+1];
-  int msgTxtLength;  // location of terminating NULL in msgTxt
-
   char serverID[15]; // arduinoServer IPaddress or Hostname
-  unsigned char dirRotation; // motor rotation, clockwise='1' &
+  char dirRotation; // motor rotation, clockwise='1' &
 			     // counterclockwise='0'
-  unsigned int numRotation; // number of motor rotations; not
-			    // applicable to stepper motor
+  char numRotation; // number of motor rotations; not
+		    // applicable to stepper motor
 };
 
 #endif // AMBULANCE_H

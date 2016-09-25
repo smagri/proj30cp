@@ -13,6 +13,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QCheckBox>
 #include <QtGui/QComboBox>
 #include <QtGui/QGridLayout>
 #include <QtGui/QGroupBox>
@@ -21,7 +22,6 @@
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
 #include <QtGui/QPushButton>
-#include <QtGui/QRadioButton>
 #include <QtGui/QTextEdit>
 #include <QtGui/QWidget>
 
@@ -39,13 +39,13 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_4;
     QLineEdit *servoDelaySec;
+    QCheckBox *winchDownCheckBox;
+    QCheckBox *winchUpCheckBox;
     QWidget *horizontalLayoutWidget_5;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label_5;
     QLineEdit *stepperNumRotations;
     QPushButton *microAdjPushButton;
-    QRadioButton *winchUpRadioButton;
-    QRadioButton *winchDownRadioButton;
     QGroupBox *groupBox_2;
     QPushButton *deliverPayloadPushButton;
     QGroupBox *sendSMSGroupBox;
@@ -142,6 +142,12 @@ public:
 
         horizontalLayout_4->addWidget(servoDelaySec);
 
+        winchDownCheckBox = new QCheckBox(groupBox);
+        winchDownCheckBox->setObjectName(QString::fromUtf8("winchDownCheckBox"));
+        winchDownCheckBox->setGeometry(QRect(540, 10, 111, 21));
+        winchUpCheckBox = new QCheckBox(groupBox);
+        winchUpCheckBox->setObjectName(QString::fromUtf8("winchUpCheckBox"));
+        winchUpCheckBox->setGeometry(QRect(540, 40, 111, 21));
         horizontalLayoutWidget_5 = new QWidget(groupBox);
         horizontalLayoutWidget_5->setObjectName(QString::fromUtf8("horizontalLayoutWidget_5"));
         horizontalLayoutWidget_5->setGeometry(QRect(10, 70, 471, 31));
@@ -167,19 +173,18 @@ public:
         stepperNumRotations->setMinimumSize(QSize(200, 27));
         stepperNumRotations->setMaximumSize(QSize(200, 27));
         stepperNumRotations->setInputMethodHints(Qt::ImhDigitsOnly);
-        stepperNumRotations->setMaxLength(32767);
+        stepperNumRotations->setMaxLength(4);
 
         horizontalLayout_5->addWidget(stepperNumRotations);
 
         microAdjPushButton = new QPushButton(groupBox);
         microAdjPushButton->setObjectName(QString::fromUtf8("microAdjPushButton"));
         microAdjPushButton->setGeometry(QRect(500, 70, 191, 31));
-        winchUpRadioButton = new QRadioButton(groupBox);
-        winchUpRadioButton->setObjectName(QString::fromUtf8("winchUpRadioButton"));
-        winchUpRadioButton->setGeometry(QRect(530, 40, 117, 22));
-        winchDownRadioButton = new QRadioButton(groupBox);
-        winchDownRadioButton->setObjectName(QString::fromUtf8("winchDownRadioButton"));
-        winchDownRadioButton->setGeometry(QRect(530, 10, 117, 22));
+        horizontalLayoutWidget_4->raise();
+        winchDownCheckBox->raise();
+        winchUpCheckBox->raise();
+        horizontalLayoutWidget_5->raise();
+        microAdjPushButton->raise();
         groupBox_2 = new QGroupBox(motorControlGroupBox);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
         groupBox_2->setGeometry(QRect(10, 20, 701, 71));
@@ -305,6 +310,12 @@ public:
 
         horizontalLayout_3->addWidget(mobileNumLineEdit);
 
+        horizontalLayoutWidget->raise();
+        horizontalLayoutWidget_2->raise();
+        label_2->raise();
+        sendSMSPushButton->raise();
+        horizontalLayoutWidget_3->raise();
+        horizontalLayoutWidget_3->raise();
 
         retranslateUi(ambulance);
 
@@ -324,11 +335,10 @@ public:
         motorControlGroupBox->setTitle(QApplication::translate("ambulance", "Motor Control", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("ambulance", "Manual Control", 0, QApplication::UnicodeUTF8));
         label_4->setText(QApplication::translate("ambulance", "Servo  Motor, Delay in Seconds", 0, QApplication::UnicodeUTF8));
+        winchDownCheckBox->setText(QApplication::translate("ambulance", "Winch Down", 0, QApplication::UnicodeUTF8));
+        winchUpCheckBox->setText(QApplication::translate("ambulance", "Winch Up", 0, QApplication::UnicodeUTF8));
         label_5->setText(QApplication::translate("ambulance", "Stepper Motor, Number of Rotations", 0, QApplication::UnicodeUTF8));
-        stepperNumRotations->setText(QString());
         microAdjPushButton->setText(QApplication::translate("ambulance", "microAdjustment", 0, QApplication::UnicodeUTF8));
-        winchUpRadioButton->setText(QApplication::translate("ambulance", "Winch Up", 0, QApplication::UnicodeUTF8));
-        winchDownRadioButton->setText(QApplication::translate("ambulance", "Winch Down", 0, QApplication::UnicodeUTF8));
         groupBox_2->setTitle(QApplication::translate("ambulance", "Automated Control", 0, QApplication::UnicodeUTF8));
         deliverPayloadPushButton->setText(QApplication::translate("ambulance", "Deliver Payload to Landing Pad", 0, QApplication::UnicodeUTF8));
         sendSMSGroupBox->setTitle(QApplication::translate("ambulance", "Send SMS", 0, QApplication::UnicodeUTF8));
