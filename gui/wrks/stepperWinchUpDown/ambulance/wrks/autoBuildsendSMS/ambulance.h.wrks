@@ -1,0 +1,29 @@
+#ifndef AMBULANCE_H
+#define AMBULANCE_H
+
+#include <QWidget>
+
+
+namespace Ui {
+  class ambulance;
+}
+
+class ambulance : public QWidget{
+  
+  Q_OBJECT
+    
+ public:
+  explicit ambulance(QWidget *parent = 0);
+  ~ambulance();
+
+
+ private slots:
+  void on_deliverPayloadPushButton_clicked();
+  void on_sendSMSPushButton_clicked();
+
+
+ private:
+  Ui::ambulance *ui;
+};
+
+#endif // AMBULANCE_H

@@ -164,15 +164,22 @@ int xfer2as(char dirRotation, unsigned int numRotation, char *serverID){
     // bytes.  The arduinoStepperServer.ino can  only accept one byte at
     // a time.
     //
-    // This is done  using the most portable method,  were there is no
-    // need  to  worry about  size(number  of  bytes)  of an  int  and
-    // endianness, BTW arduino is little endian(MSB<-LSB).
-    //
-    numRotationByte[0] = ((numRotation & 0x000000FF) >> 0);
-    numRotationByte[1] = ((numRotation & 0x0000FF00) >> 8);
-    numRotationByte[2] = ((numRotation & 0x00FF0000) >> 16);
-    numRotationByte[3] = ((numRotation & 0xFF000000) >> 24);
+    // This is  done using  the most portable  method, were there  is no
+    // need to  worry about size of  int and endianness,  BTW arduino is
+    // little endian.
+    numRotationByte[0] = (numRotation & 0x000000FF) >> 0;
+    numRotationByte[1] = (numRotation & 0x0000FF00) >> 8;
+    numRotationByte[2] = (numRotation & 0x00FF0000) >> 16;
+    numRotationByte[3] = (numRotation & 0xFF000000) >> 24;
 
+//unsigned int numRotation; // number of rotations required
+//unsigned char numRotationByte[4];
+//unsigned char *numRotationPtr;
+    // unsigned int i;
+    // unsigned char *ptr2char;
+    // unsigned int *ptr2int;
+    // ((char *) ptr2int) = &i;
+    
     fprintf(stderr,
 	    "dbg: xfer2as: numRotationByte MSB->LSB: 0x%x 0x%x 0x%x 0x%x\n",
 	    numRotationByte[3], numRotationByte[2],

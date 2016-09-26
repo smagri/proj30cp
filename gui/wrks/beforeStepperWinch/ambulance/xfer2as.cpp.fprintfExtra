@@ -33,7 +33,6 @@
 // exits (4) - fatal error while trying to write to server 
 // exits (5) - fatal error while trying to read from server
 // exits (6) - fatal error while closing this client's socket fd
-// exits (7) - fatal error, invalid numRotation value
 
 // ---------------------------------------------------------------------------
 // History:
@@ -42,7 +41,6 @@
 // 05sep2016	Simone Magri	Original code turned into xfer2as() fn
 // 07sep2016	Simone Magri	xfer2as() using pass by value
 // 07sep2016	Simone Magri	tidy up docs and variables
-// 20sep2016	Simone Magri	changes for new arduinoStepperServer
 
 // End History.
  // --------------------------------------------------------------------------
@@ -62,7 +60,7 @@
 
 
 
-int xfer2as(char dirRotation, unsigned int numRotation, char *serverID){
+int xfer2as(char dirRotation, char numRotation, char *serverID){
 
 
   // NOTE:
@@ -75,12 +73,14 @@ int xfer2as(char dirRotation, unsigned int numRotation, char *serverID){
   struct hostent *server_host; // contains server host address in
 			       // network byte order, that is, binary
   ssize_t retval;
-  unsigned char numRotationByte[4]; // numRotation unsigned integer
-				    // broken up into bytes(8bit)/chars.
-  int i; // random integer
-  
 
-  fprintf(stderr,"xfer2as: dbg: dirRotation=%c, numRotation=%u, serverID=%s\n",
+
+  
+  fprintf(stderr,
+	  "xfer2as: dbg: dirRotation=%c, numRotation=%c, serverID=%s\n",
+	  dirRotation, numRotation, serverID);
+  fprintf(stderr,
+	  "xfer2as: dbg: dirRotation=%c, numRotation=%d, serverID=%s\n",
 	  dirRotation, numRotation, serverID);
 
 
@@ -129,80 +129,39 @@ int xfer2as(char dirRotation, unsigned int numRotation, char *serverID){
   // numRotation is the number of rotations required or the motor;
   // irrelivant for a servo motor.
   //
-  if (numRotation == 0){
-    // servo motor communicating
-
-    // xmit rotation direction
-    if ( (retval=write(client_fd, &dirRotation, sizeof(dirRotation)) == -1) ){
-      perror("xfer2as");
-      fprintf(stderr, "%s: Error in writing to server@%s.\n",
-	      "xfer2as", serverID);
-      exit(4);
-    }
-    // xmit number of rotations
-    if ( (retval=write(client_fd, &numRotation, sizeof(numRotation)) == -1) ){
-      perror("xfer2as");
-      fprintf(stderr, "%s: Error in writing to server@%s.\n",
-	      "xfer2as", serverID);
-      exit(4);
-    }
+  if ( (retval=write(client_fd, &dirRotation, sizeof(dirRotation)) == -1) ){
+    perror("xfer2as");
+    fprintf(stderr, "%s: Error in writing to server@%s.\n",
+	    "xfer2as", serverID);
+    exit(4);
   }
-  else if (numRotation > 0){
-    // Stepper motor comunicating.
-
-    // xmit rotation direction
-    if ( (retval=write(client_fd, &dirRotation, sizeof(dirRotation)) == -1) ){
-      perror("xfer2as");
-      fprintf(stderr, "%s: Error in writing to server@%s.\n",
-	      "xfer2as", serverID);
-      exit(4);
-    }
-
-    // xmit number of rotations
-    //
-    // Convert the  number of rotations, an integer,  to four individual
-    // bytes.  The arduinoStepperServer.ino can  only accept one byte at
-    // a time.
-    //
-    // This is done  using the most portable method,  were there is no
-    // need  to  worry about  size(number  of  bytes)  of an  int  and
-    // endianness, BTW arduino is little endian(MSB<-LSB).
-    //
-    numRotationByte[0] = ((numRotation & 0x000000FF) >> 0);
-    numRotationByte[1] = ((numRotation & 0x0000FF00) >> 8);
-    numRotationByte[2] = ((numRotation & 0x00FF0000) >> 16);
-    numRotationByte[3] = ((numRotation & 0xFF000000) >> 24);
-
-    fprintf(stderr,
-	    "dbg: xfer2as: numRotationByte MSB->LSB: 0x%x 0x%x 0x%x 0x%x\n",
-	    numRotationByte[3], numRotationByte[2],
-	    numRotationByte[1], numRotationByte[0]);
-
-    // Send the four bytes to the server, arduinoStepperServer.  With
-    // the least significant byte first.
-    for (i=0; i<4; i++){
-      if ( (retval=write(client_fd, &numRotationByte[i],
-			 sizeof(numRotationByte[0])) == -1) ){
-	perror("xfer2as");
-	fprintf(stderr, "%s: Error in writing to server@%s.\n",
-		"xfer2as", serverID);
-	exit(4);
-      }
-    }
+  if ( (retval=write(client_fd, &numRotation, sizeof(numRotation)) == -1) ){
+    perror("xfer2as");
+    fprintf(stderr, "%s: Error in writing to server@%s.\n",
+	    "xfer2as", serverID);
+    exit(4);
   }
-  else{
-    fprintf(stderr, "numRotations has an invalid value, ie a -ve value.\n");
-    exit(7);
-  }
-  
-  
+
+
+  // Read server's end handshake
+  //
+  // read() should block till a character is sent by the server.
+  //
+  // if ( (retval = read(client_fd, &handShake, sizeof(handShake)) == -1) ){
+  //   perror("xfer2as");
+  //   fprintf(stderr, "%s: Error in reading from server@%s\n",
+  // 	    "xfer2as", serverID);
+  //   exit(5);
+  // }
+
+
   if (close(client_fd) == -1){
     perror("xfer2as");
     fprintf(stderr, "%s: Error in closing socket fd\n.", "xfer2as");
     exit(6);
   }
-  
-  
+    
+
   return (0); /* all ok, no values need to be returned to the client */
   
 } /* end: main() */	   
