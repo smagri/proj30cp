@@ -1,0 +1,186 @@
+// c++ based:
+#include <iostream>
+
+// c based:
+#include <unistd.h>
+#include <stdio.h>
+
+// local:
+#include "ambulance.hpp"
+#include "ui_ambulance.h"
+
+
+
+ambulance::ambulance(QWidget *parent) :
+  QWidget(parent),
+  ui(new Ui::ambulance){
+
+  ui->setupUi(this);
+  
+  fprintf(stderr, "Hello Ambulance World!\n");
+
+  // initialises SMS variables
+  strcpy(modemDevName, "/dev/ttyUSB0"); // default modem device
+  strcpy(phoneNum, "+61401858908"); // default SMS phone number(smagri)
+  fprintf(stderr, "Will open device %s\n", modemDevName);
+  fprintf(stderr, "New phoneNum=%s\n", phoneNum);
+}
+
+
+ambulance::~ambulance(){
+
+  delete ui;
+}
+
+
+void ambulance::on_deliverPayloadPushButton_clicked(){
+
+  fprintf(stderr, "deliverPayloadPushButton_clicked\n");
+
+}
+
+
+void ambulance::on_sendSMSPushButton_clicked(){
+
+  fprintf(stderr, "sendSMSPushButton_clicked\n");
+
+  
+  sendSMS(modemDevName, phoneNum);
+
+}
+
+
+void ambulance::on_modemDevNameComboBox_activated(const QString &arg1){
+
+  string str; // standard c++ string
+  const char *mdn; // temporary
+  //char modemDevName[12];
+
+  fprintf(stderr, "modemDevNameComboBox_activated\n");
+
+  str = arg1.toStdString(); // QString member function to c++ 'string'
+  mdn = str.c_str();// c++ 'string' to pointer to char(ie char *)
+  strcpy(modemDevName, mdn);
+  fprintf(stderr, "QString pointer, &arg1=modemDevName %s\n", modemDevName);
+  fprintf(stderr, "QString pointer, &arg1=mdn %s\n", mdn);
+
+}
+
+
+// void ambulance::on_stepperNumRotations_cursorPositionChanged(int arg1,
+// 							     int arg2){
+
+//  fprintf(stderr, "stepperNumRotations_cursorPositionChanged\n");
+
+//  fprintf(stderr, "Current cursor  postn is in front of position arg2\n");
+//  fprintf(stderr, "Gone from arg1 to arg2 position narg1=%d, arg2=%d\n",
+// 	 arg1, arg2);
+  
+// }
+
+
+void ambulance::on_stepperNumRotations_editingFinished(){
+
+  // *_editingFinished is called on CR or moving the cursor outside
+  // the box via the mouse or keyboard commands(eg tab).
+  //
+  fprintf(stderr, "stepperNumRotations_editingFinished\n");
+  char nrc[4];
+
+  int numRotation = ui->stepperNumRotations->text().toInt();
+
+  // if (numRotationInt > 127){
+  //   // Improvements need to be made to the arduino server, if possible.
+  //   fprintf(stderr, "Currently, stepper motor number of rotations > 127"
+  // 	    " are invalid.\n");
+  //   return;
+  // }
+
+  fprintf(stderr, "  int numRotation=%d\n", numRotation);
+  fprintf(stderr, "  char numRotation=%c\n", numRotation);
+
+  sprintf(nrc, "%d", numRotation);
+  fprintf(stderr, "  string nrc=%s\n", nrc);
+  fprintf(stderr, "  char nrc[0]=%c\n", nrc[0]);
+  fprintf(stderr, "  char nrc[1]=%c\n", nrc[1]);
+  fprintf(stderr, "  char nrc[2]=%c\n", nrc[2]);
+  fprintf(stderr, "  char nrc[3]=%c\n", nrc[3]);
+  //fprintf(stderr, "  ascii string of characters=%s\n", nrc);
+
+}
+
+
+void ambulance::on_microAdjPushButton_clicked(){
+
+  //int retval; // return value from xferas() fn
+
+  fprintf(stderr, "microAdjPushButton_clicked\n");
+
+
+  // dirRotation = '1'; // for debugging
+  // //strcpy(serverID, "192.168.43.200"); // servo motor
+  // strcpy(serverID, "192.168.43.201"); // stepper motor
+
+  // fprintf(stderr, "  int numRotation=%i\n", numRotation);
+  // fprintf(stderr, "  char numRotation=%c\n", numRotation);
+  // fprintf(stderr, "dirRotation=%c\n", dirRotation);
+  // fprintf(stderr, "serverID=%s\n", serverID);
+  
+  // retval = xfer2as(dirRotation, numRotation, serverID);
+  // //sleep(12); // wait for servo to stop before given next command, min=11sec
+  // sleep(6);
+
+  // fprintf(stderr, "Reverse Motor Direction, dirRotation=%c\n", dirRotation);
+  // dirRotation = '0';
+  // retval = xfer2as(dirRotation, numRotation, serverID);
+  // //sleep(12);
+  // sleep(6);
+
+  //fprintf(stderr, "microAdjPushButton_clicked: xfer2as retval=%d\n", retval);
+}
+
+
+void ambulance::on_winchDownRadioButton_clicked(){
+
+    if (ui->winchDownRadioButton->isChecked()){
+        dirRotation = '1';
+	fprintf(stderr, "dirRotation=%c\n", dirRotation);
+    }
+}
+
+
+void ambulance::on_winchUpRadioButton_clicked(){
+
+  if (ui->winchUpRadioButton->isChecked()){
+    dirRotation = '0';
+    fprintf(stderr, "dirRotation=%c\n", dirRotation);
+  }
+
+}
+
+void ambulance::on_mobileNumLineEdit_editingFinished(){
+
+  // Set new phone number for the SMS message.
+  
+  const char *phoneNumPtr; // temporary pointer for c string, includes
+			   // null('\0') string delimiter
+
+  
+  //fprintf(stderr, "Previous/Default(me) phoneNumSMScmd=%s", phoneNumSMScmd);
+
+  phoneNumPtr = ui->mobileNumLineEdit->text().toStdString().c_str();
+  strcpy(phoneNum, phoneNumPtr);
+  fprintf(stderr, "New phone number for SMS=%s\n", phoneNum);
+
+  // strcpy(phoneNumSMScmd, "AT+CMGS=\"");
+  // strcat(phoneNumSMScmd, phoneNumPtr);
+  // strcat(phoneNumSMScmd, "\"\r\n");
+  
+  //fprintf(stderr, "New phoneNumSMScmd=%s\n", phoneNumSMScmd);
+
+}
+
+void ambulance::on_messageTextTextEdit_textChanged(){
+
+  ui->messageTextTextEdit->toPlainText().toStdString();
+}

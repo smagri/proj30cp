@@ -1,0 +1,89 @@
+0x000001FF 511
+0x0001FFFF 131071
+0x01FFFFFF 33554431 over
+0x00FFFFFF 16777215 max
+
+
+0x000001FF 511:
+
+Attempting to connect to SSID: Simmy Spot
+arduinoStepperServer configured
+SSID: Simmy Spot
+IP Address: 192.168.43.201
+signal strength (RSSI):-38 dBm
+Firmware Version(version < 1.1.0 requires firmware upgrade):1.1.0
+dbg: Client has bytes available, number of bytes = 5
+dbg: First client byte read dirRotation = 49
+dbg: client byte read numRotationByte = 255
+dbg: client byte read numRotationByte = 1
+dbg: client byte read numRotationByte = 0
+dbg: client byte read numRotationByte = 0
+dbg: unsigned int numRotation=511
+dbg: unsigned int bytes=2
+dbg: unsigned long int bytes=4
+dbg: numCharsAvailable=5
+clockwise, revolution number 1
+...
+...
+...
+
+
+0x0001FFFF 131071:
+
+dbg: Client has bytes available, number of bytes = 5
+dbg: First client byte read dirRotation = 49
+dbg: client byte read numRotationByte = 255
+dbg: client byte read numRotationByte = 255
+dbg: client byte read numRotationByte = 1
+dbg: client byte read numRotationByte = 0
+dbg: unsigned int numRotation=131071
+dbg: unsigned int bytes=2
+dbg: unsigned long int bytes=4
+dbg: numCharsAvailable=5
+clockwise, revolution number 1
+clockwise, revolution number 2
+...
+...
+...
+
+0x00FFFFFF 16777215 max:
+
+Attempting to connect to SSID: Simmy Spot
+arduinoStepperServer configured
+SSID: Simmy Spot
+IP Address: 192.168.43.201
+signal strength (RSSI):-44 dBm
+Firmware Version(version < 1.1.0 requires firmware upgrade):1.1.0
+dbg: Client has bytes available, number of bytes = 5
+dbg: First client byte read dirRotation = 49
+dbg: client byte read numRotationByte = 255
+dbg: client byte read numRotationByte = 255
+dbg: client byte read numRotationByte = 255
+dbg: client byte read numRotationByte = 0
+dbg: unsigned int numRotation=16777215
+...
+...
+...
+
+0x01FFFFFF 33554431 over:
+
+Attempting to connect to SSID: Simmy Spot
+arduinoStepperServer configured
+SSID: Simmy Spot
+IP Address: 192.168.43.201
+signal strength (RSSI):-35 dBm
+Firmware Version(version < 1.1.0 requires firmware upgrade):1.1.0
+dbg: Client has bytes available, number of bytes = 5
+dbg: First client byte read dirRotation = 49
+dbg: client byte read numRotationByte = 255
+dbg: client byte read numRotationByte = 255
+dbg: client byte read numRotationByte = 255
+dbg: client byte read numRotationByte = 1
+dbg: unsigned int numRotation=33554431
+dbg: unsigned int bytes=2
+dbg: unsigned long int bytes=4
+Invalid number of rotations requested: 33554431
+...
+...
+...
+
