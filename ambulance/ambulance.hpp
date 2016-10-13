@@ -6,7 +6,7 @@
 
 
 #include <QWidget>
-
+#include <QProcess>
 
 #define MAX_modemDevName_CHARS 12
 #define MAX_phoneNum_CHARS 12
@@ -71,7 +71,7 @@ private:
 
   // Stepper/Servo motor control:
   //
-  char serverID[15]; // arduinoServer IPaddress or Hostname
+  char serverID[15+1]; // arduinoServer IPaddress or Hostname
   unsigned char dirRotation; // motor rotation, clockwise='1' &
 			     // counterclockwise='0'
   unsigned int numRotation; // number of motor rotations; not
@@ -81,6 +81,9 @@ private:
   int lastMotorSpecEdited; // which was the last motor type who's
                            // details were edited; =0 => servo, =1 =>
                            // stepper.
+
+
+  void playStreamedCameraVideo();  // Play the GoPro Hero4 Black video stream.
 
 };
 

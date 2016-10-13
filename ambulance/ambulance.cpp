@@ -19,11 +19,14 @@ ambulance::ambulance(QWidget *parent) :
   
   fprintf(stderr, "Hello Ambulance World!\n");
 
+
   // Initialises SMS variables.
   strcpy(modemDevName, "/dev/ttyUSB0"); // default modem device
   strcpy(phoneNum, "+61401858908"); // default SMS phone number(smagri)
   strcpy(msgTxt, "Payload has arrived.\r\n");//default payload arrival msg
   //              123451234512345123451 2 3, NULL is 23rd char
+
+  ui->messageTextTextEdit->setText("Payload has arrived.\r\n");
 
   fprintf(stderr, "Default device to be opened is %s\n", modemDevName);
   fprintf(stderr, "Default phone number for SMS=%s\n", phoneNum);
@@ -48,16 +51,22 @@ ambulance::ambulance(QWidget *parent) :
     }
   }
 
-  // Other initialisations.
+
+
+  // Motor control related initialisations.
   dirRotation='1'; // clockwise rotation, winch down
   ui->winchDownRadioButton->setChecked(1);
  
   numRotation=3; // default number of rotations is 3
   ui->stepperNumRotations->setText("3");
 
-  lastMotorSpecEdited = 1;;
+  lastMotorSpecEdited = 1;
 
-  ui->messageTextTextEdit->setText("Payload has arrived.\r\n");
+
+  // Attempt  to play  streamed video  from the  gopro hero4  black on
+  // startup.  If this  fails you may need to  manually reinitiate the
+  // process with the 'Restart Video Stream' pushbutton.
+  playStreamedCameraVideo();
 
 }
 
@@ -137,7 +146,8 @@ void ambulance::on_microAdjPushButton_clicked(){
   if (lastMotorSpecEdited == 1){
     // Stepper Motor control is required.
     //
-    strcpy(serverID, "192.168.43.201");
+    //strcpy(serverID, "192.168.43.201");
+    strcpy(serverID, "138.25.61.101");
     fprintf(stderr, "  serverID=%s\n", serverID);
     //
     retval = xfer2as(dirRotation, numRotation, serverID);
@@ -151,7 +161,8 @@ void ambulance::on_microAdjPushButton_clicked(){
   else if (lastMotorSpecEdited == 0){
     // Servo motor control is required.
     //
-    strcpy(serverID, "192.168.43.200");
+    //strcpy(serverID, "192.168.43.200")
+    strcpy(serverID, "138.25.61.100");;
     fprintf(stderr, "  serverID=%s\n", serverID);
     numRotation = 0;
     dirRotation = '1';
@@ -284,3 +295,31 @@ void ambulance::on_stepperNumRotations_returnPressed(){
   //fprintf(stderr, "  char numRotation=%c\n", numRotation);
 
 }
+
+
+
+void ambulance::playStreamedCameraVideo(){
+
+  // Play the GoPro Hero4 Black video stream.
+  //
+  // To  facilitate  this,  startup  the 'mplayer'  media  player,  an
+  // external program that _must_ be installed on your system.
+
+
+  QString program = "/usr/bin/mplayer";
+
+  QStringList arguments;
+  // wrks:
+  //arguments<<"-nosound"<<"-geometry"<<"532x340-16+65"<<"udp://:8554";
+  //
+  // wrks:
+  arguments<<"-nosound"<<"-geometry"<<"532x340-16+65"<<
+    "/lu1/smagri/uni/subj/proj30cp/streamHero4black/stepperMotor1.mp4";
+
+  QProcess *myProcess = new QProcess(this);
+  myProcess->start(program, arguments);
+
+
+}
+
+
