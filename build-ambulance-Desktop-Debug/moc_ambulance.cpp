@@ -22,7 +22,7 @@ static const uint qt_meta_data_ambulance[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,20 +32,26 @@ static const uint qt_meta_data_ambulance[] = {
  // slots: signature, parameters, type, tag, flags
       11,   10,   10,   10, 0x08,
       49,   10,   10,   10, 0x08,
-      85,   80,   10,   10, 0x08,
-     128,   10,   10,   10, 0x08,
-     160,   10,   10,   10, 0x08,
-     194,   10,   10,   10, 0x08,
-     226,   10,   10,   10, 0x08,
-     265,   10,   10,   10, 0x08,
-     302,   10,   10,   10, 0x08,
-     335,   10,   10,   10, 0x08,
+      90,   10,   10,   10, 0x08,
+     126,   10,   10,   10, 0x08,
+     162,  157,   10,   10, 0x08,
+     205,   10,   10,   10, 0x08,
+     237,   10,   10,   10, 0x08,
+     271,   10,   10,   10, 0x08,
+     303,   10,   10,   10, 0x08,
+     342,   10,   10,   10, 0x08,
+     379,   10,   10,   10, 0x08,
+     412,   10,   10,   10, 0x08,
+     451,   10,   10,   10, 0x08,
+     477,   10,   10,   10, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_ambulance[] = {
     "ambulance\0\0on_deliverPayloadPushButton_clicked()\0"
+    "on_deliverPayload2LPpushButton_clicked()\0"
+    "on_restartVideoPushButton_clicked()\0"
     "on_sendSMSPushButton_clicked()\0arg1\0"
     "on_modemDevNameComboBox_activated(QString)\0"
     "on_microAdjPushButton_clicked()\0"
@@ -55,6 +61,8 @@ static const char qt_meta_stringdata_ambulance[] = {
     "on_messageTextTextEdit_textChanged()\0"
     "on_servoDelaySec_returnPressed()\0"
     "on_stepperNumRotations_returnPressed()\0"
+    "readyReadStandardOutput()\0"
+    "readyReadStandardError()\0"
 };
 
 void ambulance::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -64,15 +72,19 @@ void ambulance::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         ambulance *_t = static_cast<ambulance *>(_o);
         switch (_id) {
         case 0: _t->on_deliverPayloadPushButton_clicked(); break;
-        case 1: _t->on_sendSMSPushButton_clicked(); break;
-        case 2: _t->on_modemDevNameComboBox_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 3: _t->on_microAdjPushButton_clicked(); break;
-        case 4: _t->on_winchDownRadioButton_clicked(); break;
-        case 5: _t->on_winchUpRadioButton_clicked(); break;
-        case 6: _t->on_mobileNumLineEdit_editingFinished(); break;
-        case 7: _t->on_messageTextTextEdit_textChanged(); break;
-        case 8: _t->on_servoDelaySec_returnPressed(); break;
-        case 9: _t->on_stepperNumRotations_returnPressed(); break;
+        case 1: _t->on_deliverPayload2LPpushButton_clicked(); break;
+        case 2: _t->on_restartVideoPushButton_clicked(); break;
+        case 3: _t->on_sendSMSPushButton_clicked(); break;
+        case 4: _t->on_modemDevNameComboBox_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 5: _t->on_microAdjPushButton_clicked(); break;
+        case 6: _t->on_winchDownRadioButton_clicked(); break;
+        case 7: _t->on_winchUpRadioButton_clicked(); break;
+        case 8: _t->on_mobileNumLineEdit_editingFinished(); break;
+        case 9: _t->on_messageTextTextEdit_textChanged(); break;
+        case 10: _t->on_servoDelaySec_returnPressed(); break;
+        case 11: _t->on_stepperNumRotations_returnPressed(); break;
+        case 12: _t->readyReadStandardOutput(); break;
+        case 13: _t->readyReadStandardError(); break;
         default: ;
         }
     }
@@ -110,9 +122,9 @@ int ambulance::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 14;
     }
     return _id;
 }

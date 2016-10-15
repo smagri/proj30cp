@@ -77,11 +77,13 @@ ambulance::~ambulance(){
 }
 
 
+
 void ambulance::on_deliverPayloadPushButton_clicked(){
 
   fprintf(stderr, "deliverPayloadPushButton_clicked\n");
 
 }
+
 
 
 void ambulance::on_sendSMSPushButton_clicked(){
@@ -92,6 +94,7 @@ void ambulance::on_sendSMSPushButton_clicked(){
   sendSMS(modemDevName, phoneNum, msgTxt, msgTxtLength);
 
 }
+
 
 
 void ambulance::on_modemDevNameComboBox_activated(const QString &arg1){
@@ -256,14 +259,14 @@ void ambulance::on_messageTextTextEdit_textChanged(){
 
 void ambulance::on_servoDelaySec_returnPressed(){
 
-  fprintf(stderr, "servoDelaySec_editingFinished\n");
+  fprintf(stderr, "servoDelaySec_returnPressed\n");
   
   servoDelaySeconds = ui->servoDelaySec->text().toInt();
   
   lastMotorSpecEdited = 0;
  
-  fprintf(stderr, "lastMotorSpecEdited=%d\n", lastMotorSpecEdited);
-  fprintf(stderr, "servoDelaySeconds=%d\n", servoDelaySeconds);
+  fprintf(stderr, " lastMotorSpecEdited=%d\n", lastMotorSpecEdited);
+  fprintf(stderr, " servoDelaySeconds=%d\n", servoDelaySeconds);
   
 }
 
@@ -274,7 +277,7 @@ void ambulance::on_stepperNumRotations_returnPressed(){
   // *_editingFinished is called on CR or moving the cursor outside
   // the box via the mouse or keyboard commands(eg tab).
   //
-  fprintf(stderr, "stepperNumRotations_editingFinished\n");
+  fprintf(stderr, "stepperNumRotations_returnPressed\n");
   
   numRotation = ui->stepperNumRotations->text().toInt();
   
@@ -287,8 +290,8 @@ void ambulance::on_stepperNumRotations_returnPressed(){
   //   return;
   // }
 
-  fprintf(stderr, "lastMotorSpecEdited=%d\n", lastMotorSpecEdited);
-  fprintf(stderr, "  unsigned int numRotation=%u\n", numRotation);
+  fprintf(stderr, " lastMotorSpecEdited=%d\n", lastMotorSpecEdited);
+  fprintf(stderr, " unsigned int numRotation=%u\n", numRotation);
 
   // Only  works for numbers  that represent  characters in  the ascii
   // character set, otherwise you just get funny chars on the screen.
@@ -305,21 +308,69 @@ void ambulance::playStreamedCameraVideo(){
   // To  facilitate  this,  startup  the 'mplayer'  media  player,  an
   // external program that _must_ be installed on your system.
 
+  fprintf(stderr, "playStreamedCameraVideo() called.\n");
+  
+  // Setup procedure for the stream.  
+  // 
+  // Detach  from this process,  acting like  a daemon  & has  its own
+  // process.  Thus  this process persists after  this calling process
+  // exits.
+  QString progSS = "/bin/csh";
+  QStringList argSS;
+  argSS << "/lu1/smagri/uni/subj/proj30cp/proj/ambulance/startStreaming";
+  QProcess *myProcSS = new QProcess(this);
+  myProcSS->startDetached(progSS, argSS);
 
+  fprintf(stderr, "Setup procedure for streaming done.\n");
+
+  // Process does not persist after this calling process exits.
   QString program = "/usr/bin/mplayer";
-
   QStringList arguments;
   // wrks:
-  //arguments<<"-nosound"<<"-geometry"<<"532x340-16+65"<<"udp://:8554";
-  //
-  // wrks:
-  arguments<<"-nosound"<<"-geometry"<<"532x340-16+65"<<
-    "/lu1/smagri/uni/subj/proj30cp/streamHero4black/stepperMotor1.mp4";
-
-  QProcess *myProcess = new QProcess(this);
+  arguments<<"-nosound"<<"-geometry"<<"532x340-16+65"<<"udp://:8554";
+  // //
+  // // wrks:
+  // //arguments<<"-nosound"<<"-geometry"<<"532x340-16+65"<<
+  // //  "/lu1/smagri/uni/subj/proj30cp/streamHero4black/stepperMotor1.mp4";
+  //QProcess *myProcess = new QProcess(this);
+  myProcess = new QProcess(this);
   myProcess->start(program, arguments);
+  
+  fprintf(stderr,"Stream will start soon...\n");
+  fprintf(stderr,
+	  "...if it doesn't start within 2min, press 'Restart Video'.\n");
 
+  
+  // Output stderr & stdout for myProcess(ie mplayer).
+  connect(myProcess,SIGNAL(readyReadStandardError()),this,
+	  SLOT(readyReadStandardError()));
+  connect(myProcess,SIGNAL(readyReadStandardOutput()),this,
+  	  SLOT(readyReadStandardOutput()));
+  qDebug() << myProcess->readAllStandardError();
+  qDebug() << myProcess->readAllStandardOutput();
 
 }
 
 
+void ambulance::readyReadStandardOutput(){
+    qDebug() << myProcess->readAllStandardOutput();
+}
+
+void ambulance::readyReadStandardError(){
+    qDebug() << myProcess->readAllStandardError();
+}
+
+void ambulance::on_deliverPayload2LPpushButton_clicked(){
+
+  fprintf(stderr, "deliverPayload2LPpushButton_clicked\n");
+}
+
+
+
+void ambulance::on_restartVideoPushButton_clicked(){
+
+  fprintf(stderr, "restartVideoPushButton_clicked()\n");
+
+  playStreamedCameraVideo();
+
+}

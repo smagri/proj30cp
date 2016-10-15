@@ -7,6 +7,7 @@
 
 #include <QWidget>
 #include <QProcess>
+#include <QDebug>
 
 #define MAX_modemDevName_CHARS 12
 #define MAX_phoneNum_CHARS 12
@@ -37,6 +38,8 @@ public:
 
 private slots:
   void on_deliverPayloadPushButton_clicked();
+  void on_deliverPayload2LPpushButton_clicked();
+  void on_restartVideoPushButton_clicked();
 
   void on_sendSMSPushButton_clicked();
 
@@ -57,6 +60,10 @@ private slots:
 
   void on_servoDelaySec_returnPressed();
   void on_stepperNumRotations_returnPressed();
+
+  void readyReadStandardOutput();
+  void readyReadStandardError();
+
 
 private:
   // only used by member functions
@@ -84,6 +91,7 @@ private:
 
 
   void playStreamedCameraVideo();  // Play the GoPro Hero4 Black video stream.
+  QProcess *myProcess;
 
 };
 

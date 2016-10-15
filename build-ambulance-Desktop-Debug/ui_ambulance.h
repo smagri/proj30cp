@@ -47,7 +47,7 @@ public:
     QRadioButton *winchUpRadioButton;
     QRadioButton *winchDownRadioButton;
     QGroupBox *groupBox_2;
-    QPushButton *deliverPayloadPushButton;
+    QPushButton *deliverPayload2LPpushButton;
     QGroupBox *sendSMSGroupBox;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
@@ -62,23 +62,26 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QComboBox *modemDevNameComboBox;
     QLineEdit *mobileNumLineEdit;
+    QGroupBox *automatedControlGroupBox;
+    QPushButton *deliverPayloadPushButton;
+    QGroupBox *videoControlGroupBox;
+    QPushButton *restartVideoPushButton;
 
     void setupUi(QWidget *ambulance)
     {
         if (ambulance->objectName().isEmpty())
             ambulance->setObjectName(QString::fromUtf8("ambulance"));
-        ambulance->resize(779, 534);
+        ambulance->resize(798, 691);
         gridLayoutWidget = new QWidget(ambulance);
         gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(0, 0, 761, 521));
+        gridLayoutWidget->setGeometry(QRect(20, 10, 761, 661));
         ambulanceGridLayout = new QGridLayout(gridLayoutWidget);
         ambulanceGridLayout->setSpacing(6);
         ambulanceGridLayout->setContentsMargins(11, 11, 11, 11);
         ambulanceGridLayout->setObjectName(QString::fromUtf8("ambulanceGridLayout"));
         ambulanceGridLayout->setContentsMargins(0, 0, 0, 0);
-        payloadDeliveryGroupBox = new QGroupBox(ambulance);
+        payloadDeliveryGroupBox = new QGroupBox(gridLayoutWidget);
         payloadDeliveryGroupBox->setObjectName(QString::fromUtf8("payloadDeliveryGroupBox"));
-        payloadDeliveryGroupBox->setGeometry(QRect(10, 10, 739, 489));
         QFont font;
         font.setPointSize(14);
         font.setBold(true);
@@ -102,7 +105,7 @@ public:
         payloadDeliveryGroupBox->setAlignment(Qt::AlignCenter);
         motorControlGroupBox = new QGroupBox(payloadDeliveryGroupBox);
         motorControlGroupBox->setObjectName(QString::fromUtf8("motorControlGroupBox"));
-        motorControlGroupBox->setGeometry(QRect(10, 30, 721, 221));
+        motorControlGroupBox->setGeometry(QRect(20, 190, 721, 221));
         motorControlGroupBox->setStyleSheet(QString::fromUtf8("QGroupBox {\n"
 "          border: 1px solid grey;\n"
 "          border-radius: 5px;\n"
@@ -183,9 +186,9 @@ public:
         groupBox_2 = new QGroupBox(motorControlGroupBox);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
         groupBox_2->setGeometry(QRect(10, 20, 701, 71));
-        deliverPayloadPushButton = new QPushButton(groupBox_2);
-        deliverPayloadPushButton->setObjectName(QString::fromUtf8("deliverPayloadPushButton"));
-        deliverPayloadPushButton->setGeometry(QRect(70, 20, 561, 41));
+        deliverPayload2LPpushButton = new QPushButton(groupBox_2);
+        deliverPayload2LPpushButton->setObjectName(QString::fromUtf8("deliverPayload2LPpushButton"));
+        deliverPayload2LPpushButton->setGeometry(QRect(230, 20, 241, 31));
         QFont font1;
         font1.setBold(true);
         font1.setItalic(false);
@@ -193,13 +196,14 @@ public:
         font1.setStrikeOut(false);
         font1.setKerning(true);
         font1.setStyleStrategy(QFont::PreferDefault);
-        deliverPayloadPushButton->setFont(font1);
-        deliverPayloadPushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        deliverPayload2LPpushButton->setFont(font1);
+        deliverPayload2LPpushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    border: 2px solid #8f8f91;\n"
 "    border-radius: 6px;\n"
 "    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                      stop: 0 #800000, stop: 1 #dadbde);\n"
+"                                      stop: 0 #000080, stop: 1 #dadbde);\n"
 "    min-width: 80px;\n"
+"	color:white;\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
@@ -211,9 +215,10 @@ public:
 "    border-color: navy; /* make the default button prominent */\n"
 "}\n"
 ""));
+        deliverPayload2LPpushButton->setAutoDefault(false);
         sendSMSGroupBox = new QGroupBox(payloadDeliveryGroupBox);
         sendSMSGroupBox->setObjectName(QString::fromUtf8("sendSMSGroupBox"));
-        sendSMSGroupBox->setGeometry(QRect(10, 260, 721, 221));
+        sendSMSGroupBox->setGeometry(QRect(20, 420, 721, 221));
         sendSMSGroupBox->setStyleSheet(QString::fromUtf8("QGroupBox {\n"
 "          border: 1px solid grey;\n"
 "          border-radius: 5px;\n"
@@ -305,6 +310,65 @@ public:
 
         horizontalLayout_3->addWidget(mobileNumLineEdit);
 
+        horizontalLayoutWidget->raise();
+        horizontalLayoutWidget_2->raise();
+        sendSMSPushButton->raise();
+        horizontalLayoutWidget_3->raise();
+        automatedControlGroupBox = new QGroupBox(payloadDeliveryGroupBox);
+        automatedControlGroupBox->setObjectName(QString::fromUtf8("automatedControlGroupBox"));
+        automatedControlGroupBox->setGeometry(QRect(20, 30, 721, 71));
+        deliverPayloadPushButton = new QPushButton(automatedControlGroupBox);
+        deliverPayloadPushButton->setObjectName(QString::fromUtf8("deliverPayloadPushButton"));
+        deliverPayloadPushButton->setGeometry(QRect(80, 20, 561, 41));
+        deliverPayloadPushButton->setFont(font1);
+        deliverPayloadPushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    border: 2px solid #8f8f91;\n"
+"    border-radius: 6px;\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #800000, stop: 1 #dadbde);\n"
+"	color: white;\n"
+"    min-width: 80px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}\n"
+"\n"
+"QPushButton:default {\n"
+"    border-color: navy; /* make the default button prominent */\n"
+"}\n"
+""));
+        videoControlGroupBox = new QGroupBox(payloadDeliveryGroupBox);
+        videoControlGroupBox->setObjectName(QString::fromUtf8("videoControlGroupBox"));
+        videoControlGroupBox->setGeometry(QRect(20, 110, 721, 71));
+        videoControlGroupBox->setAutoFillBackground(false);
+        videoControlGroupBox->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        restartVideoPushButton = new QPushButton(videoControlGroupBox);
+        restartVideoPushButton->setObjectName(QString::fromUtf8("restartVideoPushButton"));
+        restartVideoPushButton->setGeometry(QRect(190, 30, 341, 31));
+        restartVideoPushButton->setFont(font1);
+        restartVideoPushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    border: 2px solid #8f8f91;\n"
+"    border-radius: 6px;\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #000080, stop: 1 #dadbde);\n"
+"	color:white;\n"
+"    min-width: 80px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}\n"
+"\n"
+"QPushButton:default {\n"
+"    border-color: navy; /* make the default button prominent */\n"
+"}\n"
+""));
+
+        ambulanceGridLayout->addWidget(payloadDeliveryGroupBox, 0, 0, 1, 1);
+
 
         retranslateUi(ambulance);
 
@@ -320,7 +384,7 @@ public:
 #ifndef QT_NO_ACCESSIBILITY
         payloadDeliveryGroupBox->setAccessibleName(QString());
 #endif // QT_NO_ACCESSIBILITY
-        payloadDeliveryGroupBox->setTitle(QApplication::translate("ambulance", "Payload Delivery", 0, QApplication::UnicodeUTF8));
+        payloadDeliveryGroupBox->setTitle(QApplication::translate("ambulance", "Ambulance Drone Control and Monitoring", 0, QApplication::UnicodeUTF8));
         motorControlGroupBox->setTitle(QApplication::translate("ambulance", "Motor Control", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("ambulance", "Manual Control", 0, QApplication::UnicodeUTF8));
         label_4->setText(QApplication::translate("ambulance", "Servo  Motor, Delay in Seconds", 0, QApplication::UnicodeUTF8));
@@ -331,7 +395,7 @@ public:
         winchUpRadioButton->setText(QApplication::translate("ambulance", "Winch Up", 0, QApplication::UnicodeUTF8));
         winchDownRadioButton->setText(QApplication::translate("ambulance", "Winch Down", 0, QApplication::UnicodeUTF8));
         groupBox_2->setTitle(QApplication::translate("ambulance", "Automated Control", 0, QApplication::UnicodeUTF8));
-        deliverPayloadPushButton->setText(QApplication::translate("ambulance", "Deliver Payload to Landing Pad", 0, QApplication::UnicodeUTF8));
+        deliverPayload2LPpushButton->setText(QApplication::translate("ambulance", "Deliver Payload to Landing Pad", 0, QApplication::UnicodeUTF8));
         sendSMSGroupBox->setTitle(QApplication::translate("ambulance", "Send SMS", 0, QApplication::UnicodeUTF8));
         label_3->setText(QApplication::translate("ambulance", "<html><head/><body><p align=\"center\">Modem Device Name</p></body></html>", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("ambulance", "<html><head/><body><p align=\"center\">Moblie Phone Number</p></body></html>", 0, QApplication::UnicodeUTF8));
@@ -344,6 +408,10 @@ public:
          << QApplication::translate("ambulance", "/dev/ttyUSB2", 0, QApplication::UnicodeUTF8)
         );
         mobileNumLineEdit->setText(QApplication::translate("ambulance", "+61", 0, QApplication::UnicodeUTF8));
+        automatedControlGroupBox->setTitle(QApplication::translate("ambulance", "Automated Control", 0, QApplication::UnicodeUTF8));
+        deliverPayloadPushButton->setText(QApplication::translate("ambulance", "Deliver Payload", 0, QApplication::UnicodeUTF8));
+        videoControlGroupBox->setTitle(QApplication::translate("ambulance", "Video Control", 0, QApplication::UnicodeUTF8));
+        restartVideoPushButton->setText(QApplication::translate("ambulance", "Restart Video", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
