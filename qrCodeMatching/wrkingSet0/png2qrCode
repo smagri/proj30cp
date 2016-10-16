@@ -1,0 +1,62 @@
+#!/bin/csh -f
+#*****!/bin/csh -fx --- execute fast(f), show all commands(-x)*****
+#
+
+# Takes a .png file as input and outputs the QRcode contained within
+# this file.  If the .png doesn't contain a QRcode an appropriate
+# message is output to the command line.
+
+#------------------------------------------------------------------------------
+# History:
+#
+# 16Oct2016     Simone Magri    Original script
+#
+#------------------------------------------------------------------------------
+
+# for testing
+#cd /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCode
+cd /lu1/smagri/uni/subj/proj30cp/imageMatching
+
+# for production
+#cd /lu1/smagri/uni/subj/proj30cp/proj/ambulance
+
+# for testing
+#set qrcode = `zbarimg -q --raw hwTest.png`
+#set qrcode = `zbarimg -q --raw bad.png`
+#set qrcode = `zbarimg -q --raw bipolarKnob.png`
+
+#set qrcode = `zbarimg -q --raw shot0001.png`
+#set qrcode = `zbarimg -q --raw shot0002.png`
+#set qrcode = `zbarimg -q --raw shot0003.png`
+#set qrcode = `zbarimg -q --raw shot0004.png`
+#set qrcode = `zbarimg -q --raw shot0005.png`
+
+# echo $qrcode
+
+set qrcode = `zbarimg -q --raw shot0001.png`
+if (`echo $qrcode` == "") then
+  echo "Error or no QRcode found."
+else
+  echo $qrcode
+endif
+
+set qrcode = `zbarimg -q --raw shot0002.png`
+if (`echo $qrcode` == "") then
+  echo "Error or no QRcode found."
+else
+  echo $qrcode
+endif
+
+set qrcode = `zbarimg -q --raw shot0003.png`
+if (`echo $qrcode` == "") then
+  echo "Error or no QRcode found."
+else
+  echo $qrcode
+endif
+
+set qrcode = `zbarimg -q --raw shot0004.png`
+if (`echo $qrcode` == "") then
+  echo "Error or no QRcode found."
+else
+  echo $qrcode
+endif

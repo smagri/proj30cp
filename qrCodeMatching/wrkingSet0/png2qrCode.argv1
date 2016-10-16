@@ -1,0 +1,35 @@
+#!/bin/csh -f
+#*****!/bin/csh -fx --- execute fast(f), show all commands(-x)*****
+#
+
+# Takes a .png file as input and outputs the QRcode contained within
+# this file.  If the .png doesn't contain a QRcode an appropriate
+# message is output to the command line.
+
+#------------------------------------------------------------------------------
+# History:
+#
+# 16Oct2016     Simone Magri    Original script
+# 16Oct2016	Simone Magri	for testing, with argv[1].png to decode
+#
+#------------------------------------------------------------------------------
+
+# for testing
+#cd /lu1/smagri/uni/subj/proj30cp/imageMatching
+#
+# for production
+#cd /lu1/smagri/uni/subj/proj30cp/proj/ambulance
+#
+cd `echo $PWD`
+
+# for testing
+#set qrcode = `zbarimg -q --raw hwTest.png`
+#set qrcode = `zbarimg -q --raw bad.png`
+#set qrcode = `zbarimg -q --raw bipolarKnob.png`
+
+set qrcode = `zbarimg -q --raw $argv[1].png`
+if (`echo $qrcode` == "") then
+  echo "Error or no QRcode found."
+else
+  echo $qrcode
+endif
