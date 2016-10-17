@@ -1,0 +1,78 @@
+#!/bin/csh -fx
+#*****!/bin/csh -fx --- execute fast(f), show all commands(-x)*****
+#
+
+# The necessary files  and commands needed to be  run before the gopro
+# video streaming  can be  initiated via a  video media  player. 
+
+# Note also that you must first be logged into the gopro wifi hotspot,
+# which  for project  voyager is  voyagerNhero4black,  where N=1,2..5.
+# And you must also put the  gopro camera in the:
+# wifi-ON and 'GPro App mode'.
+# 
+
+# This is a bit of black magic.
+
+#------------------------------------------------------------------------------
+# History:
+#
+# 14Oct2016     Simone Magri    Original script
+# 15Oct2016     Simone Magri    Adding execution path change
+# 15Oct2016     Simone Magri    Adding cleanup before fresh execution
+#
+#------------------------------------------------------------------------------
+
+# Cleanup last invocation of this script, for a clean & safe start.
+# If first invocation no cleanup is required.
+set tailPid = `ps ax \
+    | fgrep -i "tail -f execute?p1=gpStream&c1=restart" \
+    | head -n1 \
+    | awk '{print $1}'`
+set tailPidNum = `ps ax \
+    | fgrep -i "tail -f execute?p1=gpStream&c1=restart" \
+    | wc -l`
+if ($tailPidNum > 1) then
+  kill -9 $tailPid
+endif
+
+set keepStreamAlivePid = `ps ax \
+    | fgrep -i "GoProStreamKeepAlive.py" \
+    | head -n1 \
+    | awk '{print $1}'`
+set keepStreamAlivePidNum = `ps ax \
+    | fgrep -i "GoProStreamKeepAlive.py" \
+    | wc -l`
+if ($keepStreamAlivePidNum > 1) then
+  kill -9 $keepStreamAlivePid
+endif
+
+#set mplayerPid = `ps ax \
+#    | fgrep -i mplayer \
+#    | head -n1 \
+#    | awk '{print $1}'`
+#set mplayerPidNum = `ps ax \
+#    | fgrep -i mplayer \
+#    | wc -l`
+#if ($mplayerPidNum > 1) then
+#  kill -9 $mplayerPid
+#endif
+
+
+
+# Perhaps later make this path a command line argument.
+cd /lu1/smagri/uni/subj/proj30cp/proj/ambulance
+
+# Cleanup pervious invocation of this script
+
+# Start python script that keeps the stream going beyond it's timout period.
+/usr/bin/python GoProStreamKeepAlive.py &
+
+# Some cleanup otherwise we could fill the disk up.
+rm -rf execute\?p1=gpStream\&c1=restart
+
+# Non-interactive download from the web, connect to URL.
+wget http://10.5.5.9:8080/gp/gpControl/execute\?p1\=gpStream\&c1\=restart
+
+tail -f execute\?p1=gpStream\&c1=restart
+
+exit 0
