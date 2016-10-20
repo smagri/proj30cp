@@ -1,0 +1,80 @@
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg bipolarKnob_bblg.png scanned 0 barcode symbols from 1 images in 0.42 seconds
+
+
+WARNING: barcode data was not detected in some image(s)
+  things to check:
+    - is the barcode type supported?  currently supported symbologies are:
+      EAN/UPC (EAN-13, EAN-8, UPC-A, UPC-E, ISBN-10, ISBN-13),
+      Code 128, Code 39 and Interleaved 2 of 5
+    - is the barcode large enough in the image?
+    - is the barcode mostly in focus?
+    - is there sufficient contrast/illumination?
+
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg bad.png
+ERROR: improper image header `bad.png' @ error/png.c/ReadPNGImage/3675
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg helloWorld.png
+QR-Code:helloWorld
+scanned 1 barcode symbols from 1 images in 0.36 seconds
+
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg bipolarKnob_bblg.png scanned 0 barcode symbols from 1 images in 0.42 seconds
+
+
+WARNING: barcode data was not detected in some image(s)
+  things to check:
+    - is the barcode type supported?  currently supported symbologies are:
+      EAN/UPC (EAN-13, EAN-8, UPC-A, UPC-E, ISBN-10, ISBN-13),
+      Code 128, Code 39 and Interleaved 2 of 5
+    - is the barcode large enough in the image?
+    - is the barcode mostly in focus?
+    - is there sufficient contrast/illumination?
+
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg bad.png
+ERROR: improper image header `bad.png' @ error/png.c/ReadPNGImage/3675
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg helloWorld.png
+QR-Code:helloWorld
+scanned 1 barcode symbols from 1 images in 0.36 seconds
+
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg --raw bipolarKnob_bblg.png
+scanned 0 barcode symbols from 1 images in 0.42 seconds
+
+
+WARNING: barcode data was not detected in some image(s)
+  things to check:
+    - is the barcode type supported?  currently supported symbologies are:
+      EAN/UPC (EAN-13, EAN-8, UPC-A, UPC-E, ISBN-10, ISBN-13),
+      Code 128, Code 39 and Interleaved 2 of 5
+    - is the barcode large enough in the image?
+    - is the barcode mostly in focus?
+    - is there sufficient contrast/illumination?
+
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg --raw bad.png       ERROR: improper image header `bad.png' @ error/png.c/ReadPNGImage/3675
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg --raw helloWorld.pnghelloWorld
+scanned 1 barcode symbols from 1 images in 0.33 seconds
+
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg -q bipolarKnob_bblg.png
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg -q bad.png       ERROR: improper image header `bad.png' @ error/png.c/ReadPNGImage/3675
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg -q helloWorld.png QR-Code:helloWorld
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg -q --raw bipolarKnob_bblg.png
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg -q --raw bad.png    ERROR: improper image header `bad.png' @ error/png.c/ReadPNGImage/3675
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% zbarimg -q --raw helloWorld.png
+helloWorld
+gyan1: /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCodes% 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+

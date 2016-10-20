@@ -1,4 +1,4 @@
-#!/bin/csh -f
+#!/bin/csh -fx
 #*****!/bin/csh -fx --- execute fast(f), show all commands(-x)*****
 #
 
@@ -10,28 +10,24 @@
 # History:
 #
 # 16Oct2016     Simone Magri    Original script
-# 16Oct2016	Simone Magri	for testing, with argv[1].png to decode
-# 20Oct2016	Simone Magri	changed argv[1] to include .png in the provided
-#				file name, as without it it caused confusion
-#				on the part of the user
 #
 #------------------------------------------------------------------------------
 
 # for testing
-#cd /lu1/smagri/uni/subj/proj30cp/imageMatching
-#
+cd /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCode
+
 # for production
 #cd /lu1/smagri/uni/subj/proj30cp/proj/ambulance
-#
-cd `echo $PWD`
 
-# for testing
-#set qrcode = `zbarimg -q --raw hwTest.png`
-#set qrcode = `zbarimg -q --raw bad.png`
-#set qrcode = `zbarimg -q --raw bipolarKnob.png`
 
-set qrcode = `zbarimg -q --raw $argv[1]`
-if (`echo $qrcode` == "") then
+set qrcode = `zbarimg -q --raw hwTest.png`
+set qrcode = `zbarimg -q --raw bad.png`
+set qrcode = `zbarimg -q --raw bipolarKnob.png`
+
+
+echo $qrcode
+
+if ($qrcode == "") then
   echo "Error or no QRcode found."
 else
   echo $qrcode

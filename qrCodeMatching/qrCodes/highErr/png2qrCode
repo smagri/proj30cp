@@ -15,8 +15,7 @@
 
 # for testing
 #cd /lu1/smagri/uni/subj/proj30cp/imageMatching/qrCode
-#cd /lu1/smagri/uni/subj/proj30cp/imageMatching/wrkingSet0
-cd $PWD
+cd /lu1/smagri/uni/subj/proj30cp/imageMatching
 
 # for production
 #cd /lu1/smagri/uni/subj/proj30cp/proj/ambulance
@@ -48,16 +47,16 @@ else
   echo $qrcode
 endif
 
-set qrcode = `zbarimg -q --raw shot0003.png`
-if (`echo $qrcode` == "") then
-  echo "Error or no QRcode found."
-else
-  echo $qrcode
-endif
+#set qrcode = `zbarimg -q --raw shot0003.png`
+#if (`echo $qrcode` == "") then
+#  echo "Error or no QRcode found."
+#else
+#  echo $qrcode
+#endif
 
-set qrcode = `zbarimg -q --raw shot0004.png`
-if (`echo $qrcode` == "") then
-  echo "Error or no QRcode found."
-else
-  echo $qrcode
-endif
+#set qrcode = `zbarimg -q --raw shot0004.png`
+#if (`echo $qrcode` == "") then
+#  echo "Error or no QRcode found."
+#else
+#  echo $qrcode
+#endif
