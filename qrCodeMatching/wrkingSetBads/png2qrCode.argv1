@@ -30,7 +30,7 @@ cd `echo $PWD`
 #set qrcode = `zbarimg -q --raw bad.png`
 #set qrcode = `zbarimg -q --raw bipolarKnob.png`
 
-set qrcode = `zbarimg --xml -q --raw $argv[1]`
+set qrcode = `zbarimg -q --raw $argv[1]`
 if (`echo $qrcode` == "") then
   echo "Error or no QRcode found."
 else
