@@ -1,0 +1,6 @@
+May  5 10:56:33 gyan1 kernel: [61088.151723] usb 3-1: new high-speed USB device number 28 using xhci_hcd
+May  5 10:56:33 gyan1 kernel: [61088.168345] usb 3-1: New USB device found, idVendor=2212, idProduct=0001
+May  5 10:56:33 gyan1 kernel: [61088.168349] usb 3-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+May  5 10:56:33 gyan1 kernel: [61088.168352] usb 3-1: Product: Microcone
+May  5 10:56:33 gyan1 kernel: [61088.168355] usb 3-1: Manufacturer: DEV-AUDIO
+May  5 10:56:33 gyan1 kernel: [61088.168356] usb 3-1: SerialNumber: 0000

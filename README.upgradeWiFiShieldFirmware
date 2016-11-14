@@ -1,0 +1,314 @@
+>After running socketClient and tcpipSocketClient and telnet to the
+arduino wifi shield at 192.168.3.117, that is,
+
+./socketClient 192.168.3.117
+Error connecting socket 111
+
+
+./tcpipSocketClient
+tcpipSocketClient: Connection refused
+tcpipSocketClient: Error in connect to tcpipSocketClient server@192.168.3.117.
+
+
+telnet 192.168.3.117
+Trying 192.168.3.117...
+telnet: Unable to connect to remote host: Connection refused
+
+
+I googled around for 'arduino wifi shield connection refused'
+
+Search pages seemed to indicate  that the Arduino WiFi Shield firmware
+needed to be upgraded.  I looked at the following links to do this.
+
+
+
+Arduino WiFi Shield
+https://www.arduino.cc/en/Main/ArduinoWiFiShield
+
+Connection with Arduino on SPI port
+FTDI connection for serial debugging of WiFi shield
+* Mini-USB for updating WiFi shield firmware
+Encryption types: WEP and WPA2 Personal
+
+The  Arduino WiFi Shield  allows an  Arduino board  to connect  to the
+internet using the 802.11  wireless specification (WiFi).  It is based
+on the  HDG204 Wireless LAN  802.11b/g System in-Package.   An AT32UC3
+provides a  network (IP) stack capable  of both TCP and  UDP.  Use the
+WiFI library to write sketches which connect to the internet using the
+shield.
+
+The  WiFi  Shield  can  connect  to wireless  networks  which  operate
+according to the 802.11b and 802.11g specifications.
+
+It is compatible with the Arduino Uno and Mega.
+
+...specific pins which should not be used, see image:
+ArduinoWiFiShieldPinUseDescribed_2.jpg
+
+...
+
+
+The  previous version  of this  shield uses  a HDG104  instead  of the
+actual HDG204.  BOTH MY wifi shields ARE HDG204.
+
+The reset button on the shield resets both the HDG204 and the Arduino board.
+
+WiFiAdditionalPorts_2.jpg:
+* Shows  the DFU  Programming Jumper,  used only  for  updating shield
+  firmware, leave unconnected for typical use.
+
+* The Micro-USB port is used for firmware upgrades.  It is for updating
+  the AT32UC3 using the Atmel DFU protocol.
+
+* The programming jumper  adjacent to the power bus  and analog inputs
+  should be left unconnected for typical  use. It is only used for DFU
+  programming mode.
+
+
+A  FTDI  connection enables  serial  communication  with  the 32U  for
+debugging purposes. A list of available commands can be found here.
+
+
+The shield contains a number of informational LEDs:
+
+L9 (yellow) : this is tied to digital pin 9
+LINK (green) : indicates a connection to a network
+ERROR (red) : indicates when there is a communication error
+DATA (blue) : indicates data being transmitted/received
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Updating Firmware on the shield:
+
+
+Upgrading the WiFi Shield Firmware
+https://www.arduino.cc/en/Hacking/WiFiShieldFirmwareUpgrading
+
+The WiFi shield provides wireless connectivity per the IEEE 802.11 b/g
+standard through the  HDG204 (or HDG104) module. The  TCP/IP stack and
+the  APIs  for  WiFi  library  are managed  by  the  AT32UC3A1512  (or
+AT32UC3A1256) called AT32UC3 for short microcontroller on the shield.
+
+Your Arduino connects to the shield using SPI through the WiFi library.
+
+
+* Both the AT32UC3 and the HDG204/HDG104 modules have firmware
+  upgradable through the mini USB connector.
+
+This tutorial shows you how to upgrade :
+
+* the HDG204/HDG104 WiFi module firmware, for when the manufacturer
+  provides a new firmware binary for their device.
+
+* the AT32UC3 when there is a new version of the firmware available from
+  Arduino.
+
+WHEN UPGRADING THE  FIRMWARE, THE WIFI SHIELD SHOULD  NOT BE CONNECTED
+TO THE ARDUINO BOARD.
+
+
+Upgrading the firmware on the devices is a two step process:
+
+* The HDG204/HDG104 firmware is named "wifi_dnld.elf". 
+* iFi shield firmware for the AT32UC3. The "wifiHD.elf"
+
+Download a DFU Programmer:
+
+sudo apt-get install dfu-programmer
+
+Download updated firmware for the 32UC3A1256/AT32UC3A1256
+
+The latest version is here:
+https://github.com/arduino/Arduino/tree/master/hardware/arduino/avr/firmwares
+
+The  firmware  is  also  located  with the  Arduino  software  in  the
+/hardware/avr/arduino/firmwares/wifishield folder.
+
+
+Linux and Mac procedure:
+
+wifishield-master.zip contains the following scripts, downloaded from
+the above wifi shield page, ie:
+https://www.arduino.cc/en/Main/ArduinoWiFiShield
+
+wifishield-master/firmware/scripts
+
+The WiFi shield  upgrading script also make use  of the dfu-programmer
+that you need to install on your system previously (make sure that the
+version is 0.5.4 or later), mine is version 0.6.1 on ubuntu14.04.
+
+Connect  a jumper  on the  J3 connector,  that put  the shield  in the
+programming mode.  Then connect the USB  cable to the  shield USB mini
+socket.
+
+On Linux  and Mac we  wrote a script  that automates the  process. The
+script is a  command line utility, so  in order to use it  you need to
+open a terminal on your system.
+
+
+On  Linux you  need  to run  the script  as  root in  order to  access
+correctly to the USB DFU peripherals.
+
+wifishield-master/firmware/scripts/ArduinoWifiShield_upgrade.sh
+
+./ArduinoWifiShield_upgrade.sh -h
+chmod 744 ArduinoWifiShield_upgrade.sh
+
+
+-a  parameter   you'll  pass  to   the  script  the   current  Arduino
+ installation path, for example: /home/user/Coding
+
+-f parameter you'll make the choice of which firmware install:
+
+shield   to upgrade only the shield firmware
+all      to upgrade both the firmwares
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Getting Started with the Arduino WiFi Shield // Retired
+https://www.arduino.cc/en/Guide/ArduinoWiFiShield
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+http://katrinaeg.com/arduino-wifi-firmware-upgrade.html
+
+How to Update the Arduino WiFi Shield Firmware
+Fri 21 March 2014
+
+
+This gets you a copy of new wifishield firmware, unfortunatly I am
+forced to download/clone from the root of the arduinoIDE:
+git clone https://github.com/arduino/Arduino.git
+
+gyan1: /lu1/smagri/sftw/arduino% git clone https://github.com/arduino/Arduino.git
+Cloning into 'Arduino'...
+remote: Counting objects: 76704, done.
+remote: Compressing objects: 100% (498/498), done.
+Receiving objects:   8% (6335/76704), 35.18 MiB | 74.00 KiB/s     
+
+...
+
+
+You can double-check that you have the right version by going to lines
+41-42 of wifishield/wifiHD/src/main.c. They should say this:
+
+/* FIRMWARE version */
+const char* fwVersion = "1.1.0";
+
+...
+
+Note,  wifishield-master.zip  linked from  the  main arduino  firmware
+upgrade page points you to this  in one spot.  When checking main.c as
+above in Katrina's page fwVersion was still 1.0.0.
+
+http://blog.braddonnelly.com/arduino-wifi-shield-and-web-server-tutorial/
+Also, these lines in your code will tell you what firmware version you
+are running.
+// display wifi shield firmware version,
+// version < 1.1 requres a firmware update of wifi shield
+Serial.print("Firmware  Version(version  <  1.1.0 requires  firmware upgrade):");
+Serial.println(WiFi.firmwareVersion());
+
+Where should I put it?   The official instructions are not clear about
+where to  keep the new firmware.  Putting them in  an arbitrary folder
+caused me  a lot  of problems  later on. I  RECOMMEND KEEPING  THE NEW
+VERSION WHERE  THE OLD VERSION  USED TO BE.  Back up the  old firmware
+with version control or by copying it to a different directory outside
+of Arduino.app.
+
+DFU Programmer  is the  software that gets  your new firmware  on your
+Arduino (DFU  stands for 'Device  Firmware Update'). Simply, execute:
+sudo apt-get install dfu-programmer.
+
+You need  to set  the jumper  to put the  WiFi shield  in programmable
+mode. The jumper  is a a tall, rectangular piece  on your WiFi shield,
+located near  the power and ground pins.   To set it, pull  it off and
+replace it  so that it  sits over both  pins. This puts the  shield in
+programmable  mode, allowing you  to update  the firmware.   After the
+update, you'll need to unset it before you use your Arduino again.
+
+You  can transfer  the new  firmware to  the Arduino  with one  of the
+install scripts, you MUST RUN IT AS ROOT:
+wifishield/firmware/scripts/ArduinoWifiShield_upgrade.sh
+
+Before you run it, you'll have to  fix a small error in the path where
+it looks for the firmware. Change:
+
+So in script we have the following two lines regarding paths:
+WIFI_FW_PATH="/hardware/arduino/firmwares/wifi-shield"
+AVR_TOOLS_PATH="/hardware/tools/avr/bin"
+
+
+Firstly, change:
+WIFI_FW_PATH="/hardware/arduino/firmwares/wifi-shield"
+
+to:
+
+WIFI_FW_PATH="/hardware/arduino/firmwares/wifishield"
+
+So, FULL PATH for me is:
+    /usr/share/arduino/hardwre/arduino/firmware/wifishield
+with ROOT OF PATH for me is:
+     /usr/share/arduino
+
+FULL PATH for me is:
+     /usr/share/arduino/hardware/tools/avr/bin
+With ROOT OF PATH for me is:
+     /usr/share/arduino
+AVR_TOOLS_PATH=/hardware/tools/avr/bin
+
+
+-a  parameter   you'll  pass  to   the  script  the   current  Arduino
+ installation path, for me this will be: /usr/share/arduino
+
+-f parameter you'll make the choice of which firmware install:
+
+shield   to upgrade only the shield firmware
+all      to upgrade both the firmwares
+
+-f shield, only upgrade the shield firmware
+
+MUST be run as ROOT:
+sudo ArduinoWifiShield_upgrade.sh -a /usr/share/arduino -f shield
+
+ACTUAL:
+sudo sh ArduinoWifiShield_upgrade.sh -a /usr/share/arduino -f shield
+
+Done. Remove the J3 jumper and press the RESET button on the shield.
+Thank you!
+
+
+Check that the install was successful, via:
+
+
+#include <WiFi.h>
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("the version is: ");
+  Serial.println(WiFi.firmwareVersion());
+}
+
+void loop() {
+}
+
+
+*** It should say the version is:
+    1.1.0
+
+
+Final Note:
+ When trying to update the firmware on a second wifi shield
+I needed to unplug the usb(std->microusb) programming cable and
+replugin.
+
+Then just run:
+
+cd /usr/share/arduino/hardware/arduino/firmwares/wifishield/script
+
+sudo sh ./ArduinoWifiShield_upgrade.sh -a /usr/share/arduino -f shield

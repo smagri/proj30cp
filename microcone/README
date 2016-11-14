@@ -1,0 +1,7 @@
+The last couple of days I have been working on getting data from the
+microcone via the ALSA usb sound driver(default sound card on my
+laptop).  Using various inputs(microcone, a standard laptop mic, and a
+pro voice mic) I created raw pcm files(​*.raw) from some C code and
+(*​.mp3s) from a standard opensource application called audacity.
+
+smagri [7:37 PM] 

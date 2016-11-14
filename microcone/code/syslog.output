@@ -1,0 +1,23 @@
+May  5 11:00:08 gyan1 kernel: [61303.542226] usb 3-1: USB disconnect, device number 30
+May  5 11:00:15 gyan1 kernel: [61310.055945] usb 3-1: new high-speed USB device number 31 using xhci_hcd
+May  5 11:00:15 gyan1 kernel: [61310.072450] usb 3-1: New USB device found, idVendor=2212, idProduct=0001
+May  5 11:00:15 gyan1 kernel: [61310.072457] usb 3-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+May  5 11:00:15 gyan1 kernel: [61310.072461] usb 3-1: Product: Microcone
+May  5 11:00:15 gyan1 kernel: [61310.072464] usb 3-1: Manufacturer: DEV-AUDIO
+May  5 11:00:15 gyan1 kernel: [61310.072467] usb 3-1: SerialNumber: 0000
+May  5 11:00:15 gyan1 mtp-probe: checking bus 3, device 31: "/sys/devices/pci0000:00/0000:00:14.0/usb3/3-1"
+May  5 11:00:15 gyan1 mtp-probe: bus: 3, device: 31 was not an MTP device
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module-alsa-card.c: Failed to find a working profile.
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module.c: Failed to load module "module-alsa-card" (argument: "device_id="1" name="usb-DEV-AUDIO_Microcone_0000-00-Microcone" card_name="alsa_card.usb-DEV-AUDIO_Microcone_0000-00-Microcone" namereg_fail=false tsched=yes fixed_latency_range=no ignore_dB=no deferred_volume=yes use_ucm=yes card_properties="module-udev-detect.discovered=1""): initialization failed.
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module-alsa-card.c: Failed to find a working profile.
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module.c: Failed to load module "module-alsa-card" (argument: "device_id="1" name="usb-DEV-AUDIO_Microcone_0000-00-Microcone" card_name="alsa_card.usb-DEV-AUDIO_Microcone_0000-00-Microcone" namereg_fail=false tsched=yes fixed_latency_range=no ignore_dB=no deferred_volume=yes use_ucm=yes card_properties="module-udev-detect.discovered=1""): initialization failed.
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module-alsa-card.c: Failed to find a working profile.
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module.c: Failed to load module "module-alsa-card" (argument: "device_id="1" name="usb-DEV-AUDIO_Microcone_0000-00-Microcone" card_name="alsa_card.usb-DEV-AUDIO_Microcone_0000-00-Microcone" namereg_fail=false tsched=yes fixed_latency_range=no ignore_dB=no deferred_volume=yes use_ucm=yes card_properties="module-udev-detect.discovered=1""): initialization failed.
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module-alsa-card.c: Failed to find a working profile.
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module.c: Failed to load module "module-alsa-card" (argument: "device_id="1" name="usb-DEV-AUDIO_Microcone_0000-00-Microcone" card_name="alsa_card.usb-DEV-AUDIO_Microcone_0000-00-Microcone" namereg_fail=false tsched=yes fixed_latency_range=no ignore_dB=no deferred_volume=yes use_ucm=yes card_properties="module-udev-detect.discovered=1""): initialization failed.
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module-alsa-card.c: Failed to find a working profile.
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module.c: Failed to load module "module-alsa-card" (argument: "device_id="1" name="usb-DEV-AUDIO_Microcone_0000-00-Microcone" card_name="alsa_card.usb-DEV-AUDIO_Microcone_0000-00-Microcone" namereg_fail=false tsched=yes fixed_latency_range=no ignore_dB=no deferred_volume=yes use_ucm=yes card_properties="module-udev-detect.discovered=1""): initialization failed.
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module-alsa-card.c: Failed to find a working profile.
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module.c: Failed to load module "module-alsa-card" (argument: "device_id="1" name="usb-DEV-AUDIO_Microcone_0000-00-Microcone" card_name="alsa_card.usb-DEV-AUDIO_Microcone_0000-00-Microcone" namereg_fail=false tsched=yes fixed_latency_range=no ignore_dB=no deferred_volume=yes use_ucm=yes card_properties="module-udev-detect.discovered=1""): initialization failed.
+May  5 11:00:15 gyan1 pulseaudio[2632]: [pulseaudio] module-udev-detect.c: Tried to configure /devices/pci0000:00/0000:00:14.0/usb3/3-1/3-1:1.0/sound/card1 (alsa_card.usb-DEV-AUDIO_Microcone_0000-00-Microcone) more often than 5 times in 10s
+
