@@ -18,11 +18,11 @@ The following images are excerpts from the report:
 
 ![Project Outline, Backend & Frontend Control System](./images/projectOutlineFrontendANDBackendControlSystem.png)
 
-./images/backendContolsystemDiagram.png
+(./images/backendContolsystemDiagram.png)
 
-./images/backendControlSyetem2+3.png
+(./images/backendControlSyetem2+3.png)
 
-./[image]images/froneEndControlSystemDiagram.FlightControlSystem.png
+(./images/froneEndControlSystemDiagram.FlightControlSystem.png)
 
 
 ##Code Summary: 
