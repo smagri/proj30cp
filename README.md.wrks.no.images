@@ -7,26 +7,13 @@ My  other  code   for  this  year  is  in   my  catkin.voice_node  and
 rosVoiceNode(indigo) repositories.  They deal with chainging the voice
 on a ros catkin and ros indigo system respectively.
 
-## Project Description (see Code Summary below for code description
-##			only):
-
-## [Detailed description  of project, you  can also even  more details
-##  for the  project in  theee report file  in /report  directory, the
-##  following images are excerpts from the report]
-
-![image]/images/projectOutlineFrontendANDBackendControlSystem.png
-![image]/images/backendContolsystemDiagram.png
-![image]/images/backendControlSyetem2+3.png
-![image]/images/froneEndControlSystemDiagram.FlightControlSystem.png
-
-
-##Code Summary: 
+#Summary: 
 arduino motor(servo &amp; stepper) wifi
 servers(arduinoStepperServer.ino, arduinoServoServer.ino);
 motor control client(motorControlClient.cpp &amp; xfer2as.cpp);
 current state of gui.
 
-#Code Details:
+#Main:
 Arduino    motor,    servo     &    stepper,    WiFi    servers    are
 arduinoServoServer.ino   &  arduinoStepperServer.ino.   The   code  is
 currently  configured to  work with  a fixed/static  ip address  on my
