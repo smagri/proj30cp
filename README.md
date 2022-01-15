@@ -7,17 +7,19 @@ My  other  code   for  this  year  is  in   my  catkin.voice_node  and
 rosVoiceNode(indigo) repositories.  They deal with chainging the voice
 on a ros catkin and ros indigo system respectively.
 
-## Project Description (see Code Summary below for code description
-##			only):
+## Project Description:
 
-## [Detailed description of project, you can also even more details
-##  for the project in the report file in /report directory, the
-##  following images are excerpts from the report]
+## See Code Summary below for code description only.
 
-![image]/images/projectOutlineFrontendANDBackendControlSystem.png
-![image]/images/backendContolsystemDiagram.png
-![image]/images/backendControlSyetem2+3.png
-![image]/images/froneEndControlSystemDiagram.FlightControlSystem.png
+## Detailed description of project, see /report directory.
+
+
+The following images are excerpts from the report:
+
+![image]images/projectOutlineFrontendANDBackendControlSystem.png
+#![image]images/backendContolsystemDiagram.png
+#![image]images/backendControlSyetem2+3.png
+#![image]images/froneEndControlSystemDiagram.FlightControlSystem.png
 
 
 ##Code Summary: 
