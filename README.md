@@ -1,4 +1,4 @@
-# proj30cp
+# uni_masters_proj30cp - Year long masters project.
 
 This is the bulk of my masters 30cp project code, 2016, namely this is
 for the backend control system of my project.
@@ -25,13 +25,13 @@ The following images are excerpts from the report:
 ![](./images/froneEndControlSystemDiagram.FlightControlSystem.png)
 
 
-##Code Summary: 
+#### Code Summary: 
 arduino motor(servo &amp; stepper) wifi
 servers(arduinoStepperServer.ino, arduinoServoServer.ino);
 motor control client(motorControlClient.cpp &amp; xfer2as.cpp);
 current state of gui.
 
-#Code Details:
+## Code Details:
 Arduino    motor,    servo     &    stepper,    WiFi    servers    are
 arduinoServoServer.ino   &  arduinoStepperServer.ino.   The   code  is
 currently  configured to  work with  a fixed/static  ip address  on my
