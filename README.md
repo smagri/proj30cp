@@ -16,9 +16,9 @@ on a ros catkin and ros indigo system respectively.
 
 The following images are excerpts from the report:
 
-![Project Outline, Backend & Frontend Control System](https://github.com/smagri/uni_masters_proj30cp/images/projectOutlineFrontendANDBackendControlSystem.png)
+#![Project Outline, Backend & Frontend Control System](https://github.com/smagri/uni_masters_proj30cp/images/projectOutlineFrontendANDBackendControlSystem.png)
 
-#images/projectOutlineFrontendANDBackendControlSystem.png
+[Project Outline](./images/projectOutlineFrontendANDBackendControlSystem.png)
 
 #![image]images/backendContolsystemDiagram.png
 
