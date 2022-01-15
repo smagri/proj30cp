@@ -10,8 +10,8 @@ on a ros catkin and ros indigo system respectively.
 ## Project Description (see Code Summary below for code description
 ##			only):
 
-## [Detailed description  of project, you  can also even  more details
-##  for the  project in  theee report file  in /report  directory, the
+## [Detailed description of project, you can also even more details
+##  for the project in the report file in /report directory, the
 ##  following images are excerpts from the report]
 
 ![image]/images/projectOutlineFrontendANDBackendControlSystem.png
