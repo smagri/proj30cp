@@ -16,7 +16,7 @@ on a ros catkin and ros indigo system respectively.
 
 The following images are excerpts from the report:
 
-images/projectOutlineFrontendANDBackendControlSystem.png
+/images/projectOutlineFrontendANDBackendControlSystem.png
 
 #![image]images/backendContolsystemDiagram.png
 
